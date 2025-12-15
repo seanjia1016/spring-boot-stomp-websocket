@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人聊天室</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            height: 80vh;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        .user-list {
+            width: 250px;
+            border-right: 1px solid #ddd;
+            background: #f8f9fa;
+            overflow-y: auto;
+        }
+        .user-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #e9ecef;
+            transition: background 0.2s;
+        }
+        .user-item:hover {
+            background: #e9ecef;
+        }
+        .user-item.active {
+            background: #007bff;
+            color: white;
+        }
+        .message-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .message.sent {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .message.received {
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .message-info {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        .input-area {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+        .connection-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+        .status-connected {
+            background: #28a745;
+            color: white;
+        }
+        .status-disconnected {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="chat-container">
+            <div class="chat-header">
+                <span>個人聊天室</span>
+                <span :class="['connection-status', isConnected ? 'status-connected' : 'status-disconnected']">
+                    {{ isConnected ? '已連接' : '未連接' }}
+                </span>
+            </div>
+            <div class="chat-body">
+                <div class="user-list">
+                    <div class="p-3 border-bottom">
+                        <input v-model="currentUser" type="text" class="form-control form-control-sm" 
+                               placeholder="輸入您的用戶名" @keyup.enter="setUsername">
+                        <button @click="setUsername" class="btn btn-primary btn-sm mt-2 w-100">設定用戶名</button>
+                    </div>
+                    <div class="p-2 border-bottom">
+                        <strong>在線用戶</strong>
+                    </div>
+                    <div v-for="user in onlineUsers" :key="user" 
+                         :class="['user-item', selectedUser === user ? 'active' : '']"
+                         @click="selectUser(user)">
+                        {{ user }}
+                    </div>
+                </div>
+                <div class="message-area">
+                    <div class="messages" ref="messagesContainer">
+                        <div v-for="(msg, index) in messages" :key="index" 
+                             :class="['message', msg.sender === currentUser ? 'sent' : 'received']">
+                            <div class="message-info">
+                                {{ msg.sender }} - {{ msg.time }}
+                            </div>
+                            <div>{{ msg.content }}</div>
+                        </div>
+                    </div>
+                    <div class="input-area">
+                        <div class="input-group">
+                            <input v-model="newMessage" type="text" class="form-control" 
+                                   placeholder="輸入訊息..." @keyup.enter="sendMessage"
+                                   :disabled="!isConnected || !currentUser">
+                            <button @click="sendMessage" class="btn btn-primary" 
+                                    :disabled="!isConnected || !currentUser || !newMessage.trim()">
+                                發送
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                發送到: {{ selectedUser ? selectedUser : '所有人 (/topic/chat)' }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const { Client } = StompJs;
+
+        createApp({
+            data() {
+                return {
+                    stompClient: null,
+                    isConnected: false,
+                    currentUser: '',
+                    selectedUser: null,
+                    onlineUsers: [],
+                    messages: [],
+                    newMessage: '',
+                    wsEndpoint: '/our-websocket'
+                };
+            },
+            mounted() {
+                this.connect();
+            },
+            beforeUnmount() {
+                this.disconnect();
+            },
+            methods: {
+                connect() {
+                    try {
+                        const socket = new SockJS(this.wsEndpoint);
+                        this.stompClient = new Client({
+                            webSocketFactory: () => socket,
+                            reconnectDelay: 5000,
+                            heartbeatIncoming: 4000,
+                            heartbeatOutgoing: 4000,
+                            onConnect: (frame) => {
+                                console.log('已連接到 WebSocket:', frame);
+                                this.isConnected = true;
+                                this.subscribeToChat();
+                            },
+                            onStompError: (frame) => {
+                                console.error('STOMP 錯誤:', frame);
+                                this.isConnected = false;
+                            },
+                            onWebSocketClose: () => {
+                                console.log('WebSocket 連接已關閉');
+                                this.isConnected = false;
+                            }
+                        });
+                        this.stompClient.activate();
+                    } catch (error) {
+                        console.error('連接錯誤:', error);
+                        this.isConnected = false;
+                    }
+                },
+                subscribeToChat() {
+                    if (this.stompClient && this.stompClient.connected) {
+                        // 訂閱公共聊天頻道 /topic/chat
+                        this.stompClient.subscribe('/topic/chat', (message) => {
+                            const data = JSON.parse(message.body);
+                            this.addMessage(data.content, data.sender || '系統');
+                        });
+
+                        // 訂閱私信頻道
+                        if (this.currentUser) {
+                            this.stompClient.subscribe(`/user/${this.currentUser}/topic/privateMessage`, (message) => {
+                                const data = JSON.parse(message.body);
+                                this.addMessage(data.content, data.sender || '私信', true);
+                            });
+                        }
+                    }
+                },
+                disconnect() {
+                    if (this.stompClient) {
+                        this.stompClient.deactivate();
+                        this.isConnected = false;
+                    }
+                },
+                setUsername() {
+                    if (this.currentUser.trim()) {
+                        if (!this.onlineUsers.includes(this.currentUser)) {
+                            this.onlineUsers.push(this.currentUser);
+                        }
+                        // 重新訂閱以更新用戶名
+                        if (this.isConnected) {
+                            this.subscribeToChat();
+                        }
+                    }
+                },
+                selectUser(user) {
+                    this.selectedUser = user;
+                },
+                sendMessage() {
+                    if (!this.newMessage.trim() || !this.isConnected || !this.currentUser) {
+                        return;
+                    }
+
+                    const messageData = {
+                        content: this.newMessage,
+                        sender: this.currentUser,
+                        recipient: this.selectedUser || null
+                    };
+
+                    if (this.selectedUser) {
+                        // 發送私信
+                        this.stompClient.publish({
+                            destination: `ws/privateMessage`,
+                            body: JSON.stringify({
+                                id: this.selectedUser,
+                                content: this.newMessage
+                            })
+                        });
+                    } else {
+                        // 發送到公共頻道
+                        this.stompClient.publish({
+                            destination: 'ws/message',
+                            body: JSON.stringify({
+                                content: this.newMessage
+                            })
+                        });
+                    }
+
+                    this.newMessage = '';
+                },
+                addMessage(content, sender, isPrivate = false) {
+                    const now = new Date();
+                    const time = now.toLocaleTimeString('zh-TW');
+                    this.messages.push({
+                        content: content,
+                        sender: sender,
+                        time: time,
+                        isPrivate: isPrivate
+                    });
+                    this.$nextTick(() => {
+                        this.scrollToBottom();
+                    });
+                },
+                scrollToBottom() {
+                    const container = this.$refs.messagesContainer;
+                    if (container) {
+                        container.scrollTop = container.scrollHeight;
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
+

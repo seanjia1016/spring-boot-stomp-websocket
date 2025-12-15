@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/target/generated-sources/annotations" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/src/main/java/com/hejz/springbootstomp/ClientStatus.puml" />
+    </excludeFromCompile>
+    <resourceExtensions>
+      <entry name=".properties" />
+      <entry name=".xml" />
+      <entry name=".html" />
+      <entry name=".js" />
+    </resourceExtensions>
+    <wildcardResourcePatterns>
+      <entry name="?*.properties" />
+      <entry name="?*.xml" />
+      <entry name="?*.g" />
+      <entry name="?*.xsd" />
+      <entry name="?*.dtd" />
+      <entry name="?*.tld" />
+      <entry name="?*.ftl" />
+      <entry name="?*.html" />
+      <entry name="?*.js" />
+    </wildcardResourcePatterns>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">

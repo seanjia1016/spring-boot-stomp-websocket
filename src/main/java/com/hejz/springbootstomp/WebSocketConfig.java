@@ -6,31 +6,105 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+/**
+ * WebSocket 配置類別
+ * 
+ * <p>此配置類別負責配置 Spring WebSocket 和 STOMP 協議的相關設定，
+ * 包括端點註冊、訊息代理配置等。
+ * 
+ * <p>主要功能：
+ * <ul>
+ *   <li>註冊 STOMP 端點：定義客戶端連接的 WebSocket 端點</li>
+ *   <li>配置訊息代理：設定訊息路由和頻道前綴</li>
+ *   <li>自訂握手處理：為每個連接分配唯一的使用者 ID</li>
+ * </ul>
+ * 
+ * <p>配置說明：
+ * <ul>
+ *   <li>WebSocket 端點：/our-websocket（支援 SockJS）</li>
+ *   <li>訊息代理前綴：/topic（用於訂閱頻道）</li>
+ *   <li>應用程式目標前綴：ws（用於發送訊息）</li>
+ * </ul>
+ * 
+ * @see com.hejz.springbootstomp.WebSocketConfigTests
+ * @see com.hejz.springbootstomp.Userhandshakehandler
+ * @author Spring Boot STOMP WebSocket Team
+ * @version 1.0
+ */
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+    
     /**
-     * 注册Stomp端点
-     * @param registry
+     * 註冊 STOMP 端點
+     * 
+     * <p>此方法註冊 WebSocket 端點，客戶端可以透過此端點建立 WebSocket 連接。
+     * 配置了自訂的握手處理器，為每個連接分配唯一的使用者 ID。
+     * 
+     * <p>配置說明：
+     * <ul>
+     *   <li>端點路徑：/our-websocket</li>
+     *   <li>握手處理器：Userhandshakehandler（為每個連接生成唯一 ID）</li>
+     *   <li>SockJS 支援：啟用 SockJS，提供更好的瀏覽器兼容性</li>
+     * </ul>
+     * 
+     * <p>客戶端連接範例：
+     * <pre>
+     * const socket = new SockJS('/our-websocket');
+     * const stompClient = Stomp.over(socket);
+     * </pre>
+     * 
+     * @param registry STOMP 端點註冊表，用於註冊 WebSocket 端點
+     * 
+     * @see com.hejz.springbootstomp.WebSocketConfigTests#testRegisterStompEndpoints()
+     * @see com.hejz.springbootstomp.WebSocketConfigTests#testStompEndpointConfiguration()
      */
     @Override
     public void registerStompEndpoints(final StompEndpointRegistry registry) {
-        //添加端点
+        // 註冊 WebSocket 端點
         registry.addEndpoint("our-websocket")
-                //添加自定义握手
+                // 添加自訂握手處理器，為每個連接分配唯一的使用者 ID
                 .setHandshakeHandler(new Userhandshakehandler())
+                // 啟用 SockJS 支援，提供更好的瀏覽器兼容性
                 .withSockJS();
     }
 
     /**
-     * 配置消息代理
-     * @param registry
+     * 配置訊息代理
+     * 
+     * <p>此方法配置 STOMP 訊息代理，定義訊息路由規則和頻道前綴。
+     * 使用簡單的記憶體代理，適合單機或小規模部署。
+     * 
+     * <p>配置說明：
+     * <ul>
+     *   <li>訊息代理前綴：/topic（用於訂閱頻道，如 /topic/chat）</li>
+     *   <li>應用程式目標前綴：ws（用於發送訊息，如 ws/message）</li>
+     * </ul>
+     * 
+     * <p>訊息路由範例：
+     * <ul>
+     *   <li>客戶端訂閱：stompClient.subscribe('/topic/chat', callback)</li>
+     *   <li>客戶端發送：stompClient.send('ws/message', {}, JSON.stringify(data))</li>
+     *   <li>伺服器發送：messagingTemplate.convertAndSend('/topic/chat', message)</li>
+     * </ul>
+     * 
+     * <p>注意事項：
+     * <ul>
+     *   <li>簡單代理使用記憶體儲存，不支援多節點部署</li>
+     *   <li>多節點部署需要使用 Redis 或其他外部訊息代理</li>
+     *   <li>本專案已整合 Redis Pub/Sub 實現多節點支援</li>
+     * </ul>
+     * 
+     * @param registry 訊息代理註冊表，用於配置訊息路由規則
+     * 
+     * @see com.hejz.springbootstomp.WebSocketConfigTests#testConfigureMessageBroker()
+     * @see com.hejz.springbootstomp.WebSocketConfigTests#testMessageBrokerPrefixes()
      */
     @Override
     public void configureMessageBroker(final MessageBrokerRegistry registry) {
-        //启用简单代理
+        // 啟用簡單代理，支援 /topic 前綴的頻道（如 /topic/chat）
         registry.enableSimpleBroker("/topic");
-        //设置应用程序目标前缀
+        // 設定應用程式目標前綴，客戶端發送訊息時使用（如 ws/message）
         registry.setApplicationDestinationPrefixes("ws");
     }
 }
