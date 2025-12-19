@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_FILE" value="logs/spring-boot-stomp.log"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- 控制台輸出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件輸出 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <prudent>true</prudent>
+    </appender>
+
+    <!-- 應用程式日誌級別 -->
+    <logger name="com.hejz.springbootstomp" level="DEBUG"/>
+    <logger name="org.springframework.web.socket" level="DEBUG"/>
+    <logger name="org.springframework.messaging" level="DEBUG"/>
+    <logger name="org.springframework.web.socket.messaging" level="DEBUG"/>
+    <logger name="org.springframework.messaging.simp" level="DEBUG"/>
+    
+    <!-- STOMP 訊息處理日誌（追蹤所有 SEND 訊息） -->
+    <logger name="org.springframework.messaging.handler.invocation" level="TRACE"/>
+    <logger name="org.springframework.messaging.handler.annotation.support" level="TRACE"/>
+    <logger name="org.springframework.messaging.handler" level="TRACE"/>
+    <logger name="org.springframework.web.socket.messaging" level="TRACE"/>
+    <logger name="org.springframework.messaging.simp.annotation.support" level="TRACE"/>
+    <logger name="org.springframework.messaging.simp.stomp" level="TRACE"/>
+    <logger name="org.springframework.messaging.simp" level="TRACE"/>
+    <logger name="org.springframework.messaging.support" level="TRACE"/>
+    <logger name="org.springframework.messaging.support.ExecutorSubscribableChannel" level="TRACE"/>
+    <logger name="org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler" level="TRACE"/>
+    <logger name="org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler" level="TRACE"/>
+    <logger name="org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler" level="TRACE"/>
+    <logger name="org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry" level="TRACE"/>
+    
+    <!-- Redis 連接錯誤日誌級別（降低為 WARN，避免大量錯誤日誌） -->
+    <logger name="org.springframework.data.redis.listener.RedisMessageListenerContainer" level="WARN"/>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
+

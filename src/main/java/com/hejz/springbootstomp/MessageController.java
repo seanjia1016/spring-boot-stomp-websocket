@@ -3,6 +3,7 @@ package com.hejz.springbootstomp;
 
 import com.hejz.springbootstomp.dto.Message;
 import com.hejz.springbootstomp.dto.ResponseMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -36,6 +37,7 @@ import java.security.Principal;
  * @author Spring Boot STOMP WebSocket Team
  * @version 1.0
  */
+@Slf4j
 @Controller
 public class MessageController {
 
@@ -76,8 +78,15 @@ public class MessageController {
     public void message(final Message message) throws InterruptedException {
         // 對訊息內容進行 HTML 轉義，防止 XSS 攻擊
         String escapedContent = HtmlUtils.htmlEscape(message.getContent());
+        
+        log.info("=== 公共訊息接收 ===");
+        log.info("訊息內容: {}", escapedContent);
+        log.info("發布到 Redis /topic/chat 頻道");
+        
         // 發布到 Redis，Redis 監聽器會轉發到所有節點的 WebSocket 客戶端
         redisPublisher.publish(escapedContent);
+        
+        log.info("公共訊息已發布到 Redis");
     }
 
     /**
@@ -124,6 +133,21 @@ public class MessageController {
      */
     @MessageMapping("/privateMessage")
     public void privateMessage(final Principal principal, final Message message) throws InterruptedException {
+        log.error("=== 私信接收開始（ERROR 級別確保可見） ===");
+        log.info("=== 私信接收開始 ===");
+        log.info("收到私信請求，發送者: {}", principal != null ? principal.getName() : "null");
+        log.info("訊息物件: {}", message != null ? message.toString() : "null");
+        
+        if (message == null) {
+            log.error("訊息物件為 null，無法處理");
+            return;
+        }
+        
+        if (message.getContent() == null || message.getContent().trim().isEmpty()) {
+            log.error("訊息內容為空，無法處理");
+            return;
+        }
+        
         // 對訊息內容進行 HTML 轉義，防止 XSS 攻擊
         String escapedContent = HtmlUtils.htmlEscape(message.getContent());
         // 構建回應訊息，包含發送者資訊
@@ -132,8 +156,24 @@ public class MessageController {
         // 從 message 中獲取接收者 ID（優先使用 id，其次使用 recipient）
         String recipient = message.getId() != null ? message.getId() : 
                           (message.getRecipient() != null ? message.getRecipient() : principal.getName());
+        
+        log.info("=== 私信發送調試 ===");
+        log.info("發送者ID: {}", principal.getName());
+        log.info("接收者ID: {}", recipient);
+        log.info("訊息內容: {}", escapedContent);
+        log.info("目標路徑: /user/{}/topic/privateMessage", recipient);
+        
         ResponseMessage responseMessage = new ResponseMessage(responseContent);
-        // 直接發送給目標用戶，不經過 Redis
-        messagingTemplate.convertAndSendToUser(recipient, "/topic/privateMessage", responseMessage);
+        
+        try {
+            // 直接發送給目標用戶，不經過 Redis
+            messagingTemplate.convertAndSendToUser(recipient, "/topic/privateMessage", responseMessage);
+            log.info("私信已發送到目標用戶: {}", recipient);
+        } catch (Exception e) {
+            log.error("發送私信時發生錯誤: {}", e.getMessage(), e);
+            throw e;
+        }
+        
+        log.info("=== 私信處理完成 ===");
     }
 }

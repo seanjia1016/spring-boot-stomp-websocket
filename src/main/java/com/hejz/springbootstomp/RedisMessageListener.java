@@ -95,16 +95,22 @@ public class RedisMessageListener implements MessageListener {
         String channel = new String(message.getChannel());
         String body = new String(message.getBody());
         
+        log.info("=== Redis 訊息接收 ===");
+        log.info("Redis 頻道: {}", channel);
+        log.info("訊息內容: {}", body);
+        
         // 從 Redis 頻道接收訊息，轉發到 WebSocket 客戶端
         try {
             // 將 JSON 字串反序列化為 ResponseMessage 物件
             ResponseMessage responseMessage = objectMapper.readValue(body, ResponseMessage.class);
+            log.info("反序列化成功，轉發到 /topic/chat");
             // 轉發到 WebSocket 的 /topic/chat 頻道，所有訂閱的客戶端都會收到
             messagingTemplate.convertAndSend("/topic/chat", responseMessage);
+            log.info("✓ 訊息已轉發到 WebSocket /topic/chat 頻道");
         } catch (Exception e) {
             // 記錄錯誤，但不中斷執行
             // 使用 logger 記錄錯誤，避免在測試中打印堆棧跟踪
-            log.error("Redis 訊息處理失敗: {}", e.getMessage());
+            log.error("Redis 訊息處理失敗: {}", e.getMessage(), e);
         }
     }
 }

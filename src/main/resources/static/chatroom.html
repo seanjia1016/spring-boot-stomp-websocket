@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公共聊天室 - 測試頁面</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <style>
+        .chatroom-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4a90e2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .message-area {
+            height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: white;
+            border-left: 4px solid #2196f3;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .message-info {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .message-content {
+            font-size: 1em;
+            color: #333;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+        .status-connected {
+            background: #4caf50;
+            color: white;
+        }
+        .status-disconnected {
+            background: #f44336;
+            color: white;
+        }
+        .user-badge {
+            background: #2196f3;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="chatroom-header">
+            <h2>💬 公共聊天室</h2>
+            <p class="mb-0">所有用戶的公共訊息都會顯示在這裡</p>
+            <span id="connectionStatus" class="status-badge status-disconnected">未連接</span>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div id="chatMessages" class="message-area"></div>
+                <div class="input-group">
+                    <input type="text" id="messageInput" class="form-control" 
+                           placeholder="輸入訊息發送到公共聊天室..." disabled>
+                    <button id="sendBtn" class="btn btn-primary" disabled>發送</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="agent-a.html" class="btn btn-secondary" target="_blank">開啟專員A頁面</a>
+            <a href="agent-b.html" class="btn btn-secondary" target="_blank">開啟專員B頁面</a>
+        </div>
+    </div>
+
+    <script>
+        let stompClient = null;
+        const userName = "聊天室觀察者";
+
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            const inputs = document.querySelectorAll('input, button');
+            
+            if (connected) {
+                statusEl.textContent = '已連接';
+                statusEl.className = 'status-badge status-connected';
+                inputs.forEach(el => el.disabled = false);
+            } else {
+                statusEl.textContent = '未連接';
+                statusEl.className = 'status-badge status-disconnected';
+                inputs.forEach(el => el.disabled = true);
+            }
+        }
+
+        function addMessage(message, sender) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            
+            const time = new Date().toLocaleTimeString('zh-TW');
+            messageDiv.innerHTML = `
+                <div class="message-info">
+                    <span>
+                        <span class="user-badge">${sender || '系統'}</span>
+                        <span style="margin-left: 10px;">${time}</span>
+                    </span>
+                </div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function connect() {
+            const socket = new SockJS('/our-websocket');
+            stompClient = Stomp.over(socket);
+            
+            stompClient.connect({}, function(frame) {
+                console.log('聊天室已連接:', frame);
+                updateConnectionStatus(true);
+                
+                // 訂閱公共聊天室頻道
+                stompClient.subscribe('/topic/chat', function(message) {
+                    const data = JSON.parse(message.body);
+                    addMessage(data.content, data.sender || '系統');
+                });
+            }, function(error) {
+                console.error('連接錯誤:', error);
+                updateConnectionStatus(false);
+            });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message && stompClient && stompClient.connected) {
+                stompClient.send('/ws/message', {}, JSON.stringify({
+                    content: message
+                }));
+                addMessage(message, userName);
+                input.value = '';
+            }
+        }
+
+        // 頁面載入時連接
+        $(document).ready(function() {
+            connect();
+            
+            $('#sendBtn').click(sendMessage);
+            
+            $('#messageInput').keypress(function(e) {
+                if (e.which === 13) sendMessage();
+            });
+        });
+    </script>
+</body>
+</html>
+

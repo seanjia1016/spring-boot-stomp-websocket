@@ -1,0 +1,204 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.hejz:spring-boot-stomp >---------------------
+[INFO] Building spring-boot-stomp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.6.1:run (default-cli) > test-compile @ spring-boot-stomp >>>
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 8 resources
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ spring-boot-stomp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory C:\spring-boot-stomp-websocket\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ spring-boot-stomp ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to C:\spring-boot-stomp-websocket\target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:2.6.1:run (default-cli) < test-compile @ spring-boot-stomp <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.6.1:run (default-cli) @ spring-boot-stomp ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.1)
+
+2025-12-17 17:53:01.270 [main] INFO  c.h.s.SpringBootStompApplication - Starting SpringBootStompApplication using Java 17.0.9 on LAPTOP-1FK1FC7K with PID 49244 (C:\spring-boot-stomp-websocket\target\classes started by 賈其翔 in C:\spring-boot-stomp-websocket)
+2025-12-17 17:53:01.277 [main] DEBUG c.h.s.SpringBootStompApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+2025-12-17 17:53:01.278 [main] INFO  c.h.s.SpringBootStompApplication - No active profile set, falling back to default profiles: default
+2025-12-17 17:53:02.444 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-12-17 17:53:02.453 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-12-17 17:53:02.506 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2025-12-17 17:53:03.622 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-12-17 17:53:03.649 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-17 17:53:03.650 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-17 17:53:03.651 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2025-12-17 17:53:03.826 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-17 17:53:03.826 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2433 ms
+2025-12-17 17:53:04.837 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/our-websocket/**] in 'stompWebSocketHandlerMapping'
+2025-12-17 17:53:05.049 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.MessageController:
+	{[MESSAGE],[/message]}: message(Message)
+	{[MESSAGE],[/privateMessage]}: privateMessage(Principal,Message)
+2025-12-17 17:53:05.054 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.WsController:
+	
+2025-12-17 17:53:05.066 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2025-12-17 17:53:05.338 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-12-17 17:53:05.870 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-17 17:53:06.053 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-17 17:53:06.055 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2025-12-17 17:53:06.056 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[ws/]]
+2025-12-17 17:53:06.056 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2025-12-17 17:53:06.057 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1537c744]
+2025-12-17 17:53:06.057 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1537c744]
+2025-12-17 17:53:06.057 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1537c744]]
+2025-12-17 17:53:06.058 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2025-12-17 17:53:06.059 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-17 17:53:06.059 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-17 17:53:06.689 [redisMessageListenerContainer-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:11.088 [main] INFO  c.h.s.SpringBootStompApplication - Started SpringBootStompApplication in 10.849 seconds (JVM running for 11.586)
+2025-12-17 17:53:11.713 [redisMessageListenerContainer-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:16.730 [redisMessageListenerContainer-3] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:21.753 [redisMessageListenerContainer-4] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:26.774 [redisMessageListenerContainer-5] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:31.798 [redisMessageListenerContainer-6] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:36.826 [redisMessageListenerContainer-7] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:41.853 [redisMessageListenerContainer-8] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:46.874 [redisMessageListenerContainer-9] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:51.903 [redisMessageListenerContainer-10] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:53:56.947 [redisMessageListenerContainer-11] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:01.972 [redisMessageListenerContainer-12] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:04.873 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-12-17 17:54:06.984 [redisMessageListenerContainer-13] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:12.008 [redisMessageListenerContainer-14] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:17.031 [redisMessageListenerContainer-15] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:22.050 [redisMessageListenerContainer-16] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:27.065 [redisMessageListenerContainer-17] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:32.132 [redisMessageListenerContainer-18] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:37.150 [redisMessageListenerContainer-19] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:42.158 [redisMessageListenerContainer-20] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:47.177 [redisMessageListenerContainer-21] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:52.182 [redisMessageListenerContainer-22] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:54:57.188 [redisMessageListenerContainer-23] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:02.194 [redisMessageListenerContainer-24] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:07.198 [redisMessageListenerContainer-25] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:12.217 [redisMessageListenerContainer-26] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:17.231 [redisMessageListenerContainer-27] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:22.238 [redisMessageListenerContainer-28] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:27.245 [redisMessageListenerContainer-29] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:32.262 [redisMessageListenerContainer-30] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:37.272 [redisMessageListenerContainer-31] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:42.286 [redisMessageListenerContainer-32] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:47.298 [redisMessageListenerContainer-33] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:52.303 [redisMessageListenerContainer-34] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:55:57.315 [redisMessageListenerContainer-35] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:02.332 [redisMessageListenerContainer-36] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:07.342 [redisMessageListenerContainer-37] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:12.360 [redisMessageListenerContainer-38] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:17.362 [redisMessageListenerContainer-39] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:22.374 [redisMessageListenerContainer-40] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:27.391 [redisMessageListenerContainer-41] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:32.394 [redisMessageListenerContainer-42] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:37.413 [redisMessageListenerContainer-43] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:42.419 [redisMessageListenerContainer-44] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:47.422 [redisMessageListenerContainer-45] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:52.439 [redisMessageListenerContainer-46] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:56:57.458 [redisMessageListenerContainer-47] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:02.471 [redisMessageListenerContainer-48] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:07.486 [redisMessageListenerContainer-49] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:12.501 [redisMessageListenerContainer-50] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:17.513 [redisMessageListenerContainer-51] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:22.533 [redisMessageListenerContainer-52] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:27.541 [redisMessageListenerContainer-53] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:32.569 [redisMessageListenerContainer-54] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:37.583 [redisMessageListenerContainer-55] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:42.597 [redisMessageListenerContainer-56] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:47.606 [redisMessageListenerContainer-57] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:52.613 [redisMessageListenerContainer-58] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:57:57.619 [redisMessageListenerContainer-59] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-17 17:58:02.626 [redisMessageListenerContainer-60] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  05:16 min
+[INFO] Finished at: 2025-12-17T17:58:04+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.6.1:run (default-cli) on project spring-boot-stomp: Application finished with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.hejz:spring-boot-stomp >---------------------
+[INFO] Building spring-boot-stomp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.6.1:run (default-cli) > test-compile @ spring-boot-stomp >>>
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 8 resources
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ spring-boot-stomp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory C:\spring-boot-stomp-websocket\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ spring-boot-stomp ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to C:\spring-boot-stomp-websocket\target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:2.6.1:run (default-cli) < test-compile @ spring-boot-stomp <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.6.1:run (default-cli) @ spring-boot-stomp ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.1)
+
+2025-12-17 17:58:23.522 [main] INFO  c.h.s.SpringBootStompApplication - Starting SpringBootStompApplication using Java 17.0.9 on LAPTOP-1FK1FC7K with PID 51828 (C:\spring-boot-stomp-websocket\target\classes started by 賈其翔 in C:\spring-boot-stomp-websocket)
+2025-12-17 17:58:23.528 [main] DEBUG c.h.s.SpringBootStompApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+2025-12-17 17:58:23.529 [main] INFO  c.h.s.SpringBootStompApplication - No active profile set, falling back to default profiles: default
+2025-12-17 17:58:25.268 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-12-17 17:58:25.272 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-12-17 17:58:25.314 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-12-17 17:58:26.578 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-12-17 17:58:26.899 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-17 17:58:26.900 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-17 17:58:26.901 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2025-12-17 17:58:27.087 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-17 17:58:27.087 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3213 ms

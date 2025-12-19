@@ -1,0 +1,53 @@
+services:
+  # Redis 服務
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - spring-boot-network
+
+  # RabbitMQ 服務
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP 端口
+      - "15672:15672"  # 管理介面端口
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - spring-boot-network
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+    driver: local
+  rabbitmq-data:
+    driver: local
+
+networks:
+  spring-boot-network:
+    driver: bridge
+

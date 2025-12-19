@@ -1,6 +1,7 @@
 package com.hejz.springbootstomp.config;
 
 import com.hejz.springbootstomp.RedisMessageListener;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,8 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Executor;
 
 /**
  * Redis 配置類別
@@ -35,6 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Spring Boot STOMP WebSocket Team
  * @version 1.0
  */
+@Slf4j
 @Configuration
 public class RedisConfig {
 
@@ -139,10 +143,30 @@ public class RedisConfig {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         
+        // 設置訂閱執行器（必須設置，否則啟動時會出現 NullPointerException）
+        Executor executor = Executors.newFixedThreadPool(2);
+        container.setSubscriptionExecutor(executor);
+        
+        // 設置連接執行器（用於處理連接相關任務）
+        container.setTaskExecutor(executor);
+        
+        // 設置最大訂閱連接數等待時間（毫秒）
+        container.setMaxSubscriptionRegistrationWaitingTime(5000);
+        
         // 創建訊息監聽器適配器，綁定到 RedisMessageListener.onMessage() 方法
         MessageListenerAdapter listenerAdapter = new MessageListenerAdapter(redisMessageListener, "onMessage");
         // 訂閱 /topic/chat 頻道
         container.addMessageListener(listenerAdapter, new ChannelTopic("/topic/chat"));
+        
+        // 設置錯誤處理：當連接失敗時，降低日誌級別，避免大量錯誤日誌
+        // 注意：RedisMessageListenerContainer 會自動重試連接，這是正常行為
+        // 如果 Redis 暫時不可用，容器會持續重試，直到連接成功
+        
+        log.info("RedisMessageListenerContainer 已配置，將在應用程式啟動後自動連接 Redis");
+        
+        // 不在此處手動啟動容器，讓 Spring 自動管理生命週期
+        // Spring 會在應用程式啟動完成後自動啟動容器
+        // 這樣可以確保在 Redis 連接準備好後再啟動，避免連接失敗
         
         return container;
     }

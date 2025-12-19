@@ -1,42 +1,43 @@
 let stompClient = null;
 
-function showMessage(content) {
-    console.log("接到消息："+content)
-    $("#showMessage").append("<tr><td>"+content+"</td></tr>")
+const showMessage = (content) => {
+    console.log("接到訊息：" + content)
+    $("#showMessage").append("<tr><td>" + content + "</td></tr>")
 }
 
-function connect() {
+const connect = () => {
     const socket = new SockJS("our-websocket");
-    stompClient=Stomp.over(socket);
-    stompClient.connect({},function(frame){
-        console.log("连接："+frame);
-        //公共信息通过
-        stompClient.subscribe("/topic/message",function (message){
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, (frame) => {
+        console.log("連接：" + frame);
+        // 公共訊息通過（訂閱 /topic/chat，與 RedisMessageListener 轉發的頻道一致）
+        stompClient.subscribe("/topic/chat", (message) => {
             showMessage(JSON.parse(message.body).content)
         })
-        //私信通过——前加user
-        stompClient.subscribe("/user/topic/privateMessage",function (message){
+        // 私信通過——前加 user
+        stompClient.subscribe("/user/topic/privateMessage", (message) => {
             showMessage(JSON.parse(message.body).content)
         })
     })
 }
 
-function sendMessage(){
-    console.log("发送消息：")
-    stompClient.send("ws/message",{},JSON.stringify({"content":$("#sendMessage").val()}))
+const sendMessage = () => {
+    console.log("發送訊息：")
+    stompClient.send("ws/message", {}, JSON.stringify({"content": $("#sendMessage").val()}))
 }
 
-function sendPrivateMessage(){
-    console.log("发送私消息：")
-    stompClient.send("ws/privateMessage",{},JSON.stringify({"content":$("#sendPrivateMessage").val()}))
+const sendPrivateMessage = () => {
+    console.log("發送私訊：")
+    stompClient.send("ws/privateMessage", {}, JSON.stringify({"content": $("#sendPrivateMessage").val()}))
 }
-$(document).ready(function(){
-    console.log("index页面准备完毕……")
+
+$(document).ready(() => {
+    console.log("index 頁面準備完畢……")
     connect();
-    $("#send").click(function (){
+    $("#send").click(() => {
         sendMessage();
     })
-    $("#sendPrivate").click(function (){
+    $("#sendPrivate").click(() => {
         sendPrivateMessage();
     })
 })

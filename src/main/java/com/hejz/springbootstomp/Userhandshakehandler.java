@@ -6,6 +6,11 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.Map;
 import java.util.UUID;
@@ -79,6 +84,17 @@ public class Userhandshakehandler extends DefaultHandshakeHandler {
         // 在生產環境中，此 ID 可以是客戶端提供的用戶 ID 或 token 值
         final String id = UUID.randomUUID().toString().replaceAll("-","");
         log.info("登入用戶 ID: {}", id);
+        
+        // 將用戶 ID 寫入臨時文件，供測試腳本讀取
+        try {
+            Path tempFile = Paths.get(System.getProperty("java.io.tmpdir"), "websocket_user_ids.json");
+            String jsonLine = String.format("{\"userId\":\"%s\",\"timestamp\":%d}\n", id, System.currentTimeMillis());
+            Files.write(tempFile, jsonLine.getBytes(), java.nio.file.StandardOpenOption.CREATE, 
+                       java.nio.file.StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            log.warn("無法寫入用戶 ID 到臨時文件: {}", e.getMessage());
+        }
+        
         return new UserPrincipal(id);
     }
 }

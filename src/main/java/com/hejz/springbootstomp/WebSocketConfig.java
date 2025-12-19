@@ -1,6 +1,9 @@
 package com.hejz.springbootstomp;
 
+import com.hejz.springbootstomp.config.WebSocketInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
@@ -34,6 +37,9 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+    
+    @Autowired
+    private WebSocketInterceptor webSocketInterceptor;
     
     /**
      * 註冊 STOMP 端點
@@ -102,9 +108,27 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      */
     @Override
     public void configureMessageBroker(final MessageBrokerRegistry registry) {
-        // 啟用簡單代理，支援 /topic 前綴的頻道（如 /topic/chat）
+        // 啟用簡單代理，支援 /topic 前綴的頻道
+        // /topic 用於公共頻道（如 /topic/chat）
+        // 注意：/user 前綴應該由 UserDestinationMessageHandler 處理，
+        //       不應該同時在 enableSimpleBroker 中啟用，這會導致路由衝突
         registry.enableSimpleBroker("/topic");
-        // 設定應用程式目標前綴，客戶端發送訊息時使用（如 ws/message）
-        registry.setApplicationDestinationPrefixes("ws");
+        // 設定應用程式目標前綴，客戶端發送訊息時使用（如 /ws/message）
+        // 注意：必須包含前導斜線，否則路由匹配會失敗
+        registry.setApplicationDestinationPrefixes("/ws");
+        // 設定用戶目標前綴，用於私信功能（convertAndSendToUser 會自動加上此前綴）
+        // 當使用 convertAndSendToUser(userId, "/topic/privateMessage", message) 時
+        // 實際發送的路徑會是 /user/{userId}/topic/privateMessage
+        // UserDestinationMessageHandler 會將此路徑轉換為實際的訂閱路徑
+        registry.setUserDestinationPrefix("/user");
+    }
+    
+    /**
+     * 配置客戶端入站通道攔截器
+     * 用於記錄所有從客戶端發送到伺服器的訊息
+     */
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.interceptors(webSocketInterceptor);
     }
 }
