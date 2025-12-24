@@ -41,6 +41,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Autowired
     private WebSocketInterceptor webSocketInterceptor;
     
+    @Autowired
+    private com.hejz.springbootstomp.service.AgentService agentService;
+    
     /**
      * 註冊 STOMP 端點
      * 
@@ -68,9 +71,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(final StompEndpointRegistry registry) {
         // 註冊 WebSocket 端點
+        // 創建握手處理器並注入 AgentService
+        Userhandshakehandler handshakeHandler = new Userhandshakehandler();
+        handshakeHandler.setAgentService(agentService);
+        
         registry.addEndpoint("our-websocket")
                 // 添加自訂握手處理器，為每個連接分配唯一的使用者 ID
-                .setHandshakeHandler(new Userhandshakehandler())
+                .setHandshakeHandler(handshakeHandler)
                 // 啟用 SockJS 支援，提供更好的瀏覽器兼容性
                 .withSockJS();
     }

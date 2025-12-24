@@ -1,16 +1,17 @@
 services:
-  # Redis 服務
+  # Redis 服務（降級到 5.0 以使用簡單密碼認證，不需要用戶名）
   redis:
-    image: redis:7-alpine
+    image: redis:5-alpine
     container_name: redis
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
-    command: redis-server --appendonly yes
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD", "redis-cli", "-a", "1111", "ping"]
       interval: 10s
       timeout: 3s
       retries: 3

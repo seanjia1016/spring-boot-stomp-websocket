@@ -1,5 +1,6 @@
 package com.hejz.springbootstomp;
 
+import com.hejz.springbootstomp.dto.PrivateMessage;
 import com.hejz.springbootstomp.dto.ResponseMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -99,18 +100,72 @@ public class RedisMessageListener implements MessageListener {
         log.info("Redis 頻道: {}", channel);
         log.info("訊息內容: {}", body);
         
-        // 從 Redis 頻道接收訊息，轉發到 WebSocket 客戶端
+        // 根據頻道類型處理不同的訊息
+        try {
+            if ("/topic/chat".equals(channel)) {
+                // 處理公共訊息
+                handlePublicMessage(body);
+            } else if ("/topic/privateMessage".equals(channel)) {
+                // 處理私信訊息
+                handlePrivateMessage(body);
+            } else {
+                log.warn("未知的 Redis 頻道: {}", channel);
+            }
+        } catch (Exception e) {
+            // 記錄錯誤，但不中斷執行
+            log.error("Redis 訊息處理失敗: {}", e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 處理公共訊息
+     * 
+     * @param body JSON 字串格式的訊息內容
+     */
+    private void handlePublicMessage(String body) {
         try {
             // 將 JSON 字串反序列化為 ResponseMessage 物件
             ResponseMessage responseMessage = objectMapper.readValue(body, ResponseMessage.class);
-            log.info("反序列化成功，轉發到 /topic/chat");
+            log.info("公共訊息反序列化成功，轉發到 /topic/chat");
             // 轉發到 WebSocket 的 /topic/chat 頻道，所有訂閱的客戶端都會收到
             messagingTemplate.convertAndSend("/topic/chat", responseMessage);
-            log.info("✓ 訊息已轉發到 WebSocket /topic/chat 頻道");
+            log.info("✓ 公共訊息已轉發到 WebSocket /topic/chat 頻道");
         } catch (Exception e) {
-            // 記錄錯誤，但不中斷執行
-            // 使用 logger 記錄錯誤，避免在測試中打印堆棧跟踪
-            log.error("Redis 訊息處理失敗: {}", e.getMessage(), e);
+            log.error("公共訊息處理失敗: {}", e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 處理私信訊息
+     * 
+     * <p>此方法將私信訊息轉發給目標用戶。如果目標用戶未連接在本節點，
+     * Spring 會自動忽略，不會拋出異常。
+     * 
+     * @param body JSON 字串格式的私信訊息內容
+     */
+    private void handlePrivateMessage(String body) {
+        try {
+            // 將 JSON 字串反序列化為 PrivateMessage 物件
+            PrivateMessage privateMessage = objectMapper.readValue(body, PrivateMessage.class);
+            log.info("私信反序列化成功，發送者: {}, 接收者: {}", 
+                    privateMessage.getSenderId(), privateMessage.getRecipientId());
+            
+            // 構建回應訊息，包含發送者資訊
+            String responseContent = privateMessage.getSenderName() + "：" + 
+                    privateMessage.getSenderId() + "發送的信息：" + privateMessage.getContent();
+            ResponseMessage responseMessage = new ResponseMessage(responseContent);
+            
+            // 轉發到目標用戶的 WebSocket 連接
+            // 如果目標用戶未連接在本節點，Spring 會自動忽略，不會拋出異常
+            messagingTemplate.convertAndSendToUser(
+                    privateMessage.getRecipientId(), 
+                    "/topic/privateMessage", 
+                    responseMessage
+            );
+            log.info("✓ 私信已轉發到目標用戶: {} (路徑: /user/{}/topic/privateMessage)", 
+                    privateMessage.getRecipientId(), privateMessage.getRecipientId());
+        } catch (Exception e) {
+            log.error("私信處理失敗: {}", e.getMessage(), e);
         }
     }
 }

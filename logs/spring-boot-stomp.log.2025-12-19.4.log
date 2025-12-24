@@ -1,0 +1,933 @@
+2025-12-19 17:38:55.928 [main] INFO  c.h.s.SpringBootStompApplication - Starting SpringBootStompApplication using Java 17.0.9 on LAPTOP-1FK1FC7K with PID 225976 (C:\spring-boot-stomp-websocket\target\classes started by 賈其翔 in C:\spring-boot-stomp-websocket)
+2025-12-19 17:38:55.934 [main] DEBUG c.h.s.SpringBootStompApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+2025-12-19 17:38:55.935 [main] INFO  c.h.s.SpringBootStompApplication - No active profile set, falling back to default profiles: default
+2025-12-19 17:38:56.685 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-12-19 17:38:56.689 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-12-19 17:38:56.715 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-12-19 17:38:57.239 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-12-19 17:38:57.251 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-19 17:38:57.252 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-19 17:38:57.253 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2025-12-19 17:38:57.338 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-19 17:38:57.338 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1336 ms
+2025-12-19 17:38:57.750 [main] INFO  c.h.s.config.RedisConfig - Redis 連接工廠已配置：host=localhost, port=6379, database=0, poolMaxActive=8, poolMaxIdle=8, poolMinIdle=0
+2025-12-19 17:38:58.064 [Finalizer] WARN  i.l.c.r.DefaultClientResources - io.lettuce.core.resource.DefaultClientResources was not shut down properly, shutdown() was not called before it's garbage-collected. Call shutdown() or shutdown(long,long,TimeUnit) 
+2025-12-19 17:38:58.422 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/our-websocket/**] in 'stompWebSocketHandlerMapping'
+2025-12-19 17:38:58.506 [main] TRACE o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Looking for @MessageExceptionHandler mappings: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@41ab013, started on Fri Dec 19 17:38:56 GMT+08:00 2025
+2025-12-19 17:38:58.599 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.MessageController:
+	{[MESSAGE],[/message]}: message(Principal,Message)
+	{[MESSAGE],[/privateMessage]}: privateMessage(Principal,Message)
+2025-12-19 17:38:58.602 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.WsController:
+	
+2025-12-19 17:38:58.603 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.c.ChatHistoryController:
+	
+2025-12-19 17:38:58.603 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.c.HeartbeatController:
+	{[MESSAGE],[/heartbeat]}: handleHeartbeat(Principal,HeartbeatMessage)
+2025-12-19 17:38:58.610 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2025-12-19 17:38:58.647 [main] INFO  c.h.s.config.RedisConfig - RedisMessageListenerContainer 專用連接工廠已配置：host=localhost, port=6379, database=0（非池化）
+2025-12-19 17:38:58.656 [main] INFO  c.h.s.config.RedisConfig - RedisMessageListenerContainer 已配置，將在應用程式啟動後自動連接 Redis
+2025-12-19 17:38:58.920 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-12-19 17:38:59.211 [Finalizer] WARN  i.l.c.r.DefaultClientResources - io.lettuce.core.resource.DefaultClientResources was not shut down properly, shutdown() was not called before it's garbage-collected. Call shutdown() or shutdown(long,long,TimeUnit) 
+2025-12-19 17:38:59.684 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-19 17:38:59.725 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-19 17:38:59.729 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2025-12-19 17:38:59.729 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/ws/]]
+2025-12-19 17:38:59.729 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2025-12-19 17:38:59.729 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2e7bb00e]
+2025-12-19 17:38:59.729 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2e7bb00e]
+2025-12-19 17:38:59.730 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2e7bb00e]]
+2025-12-19 17:38:59.730 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2025-12-19 17:38:59.731 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-19 17:38:59.731 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-19 17:39:00.580 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:04.736 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+2025-12-19 17:39:04.820 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#4b87760e:0/SimpleConnection@2d2fc130 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 65104]
+2025-12-19 17:39:04.917 [main] INFO  c.h.s.SpringBootStompApplication - Started SpringBootStompApplication in 9.623 seconds (JVM running for 10.109)
+2025-12-19 17:39:05.605 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:10.631 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:15.653 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:20.670 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:25.694 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:30.720 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:35.733 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:40.753 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:45.773 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:50.791 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:55.807 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:39:58.460 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-12-19 17:40:00.822 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:05.841 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:10.860 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:15.886 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:20.904 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:25.921 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:30.937 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:35.943 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:40.951 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:45.958 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:50.961 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:40:55.971 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:00.981 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:05.989 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:10.998 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:16.015 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:21.032 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:26.048 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:31.053 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:36.059 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:41.063 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:46.072 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:51.078 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:41:56.091 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:01.108 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:06.127 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:06.642 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-19 17:42:06.643 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-19 17:42:06.645 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-12-19 17:42:06.807 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:06.812 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/info?t=1766137326799
+2025-12-19 17:42:06.823 [http-nio-8080-exec-3] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:06.836 [http-nio-8080-exec-3] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/316/5k22tuss/websocket
+2025-12-19 17:42:06.846 [http-nio-8080-exec-3] INFO  c.h.s.Userhandshakehandler - 登入用戶 ID: c45207daf3e54a8a8166d99776d0af58
+2025-12-19 17:42:06.925 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New WebSocketServerSockJsSession[id=5k22tuss]
+2025-12-19 17:42:06.975 [http-nio-8080-exec-3] TRACE o.s.m.simp.stomp.StompDecoder - Decoded CONNECT {accept-version=[1.1,1.0], heart-beat=[10000,10000]} session=null
+2025-12-19 17:42:06.976 [http-nio-8080-exec-3] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: CONNECT user=c45207daf3e54a8a8166d99776d0af58 session=5k22tuss
+2025-12-19 17:42:06.979 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:06.980 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: CONNECT
+2025-12-19 17:42:06.980 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: null
+2025-12-19 17:42:06.980 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: 5k22tuss
+2025-12-19 17:42:06.980 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 用戶: c45207daf3e54a8a8166d99776d0af58
+2025-12-19 17:42:06.981 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:06.981 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): CONNECT
+2025-12-19 17:42:06.983 [clientInboundChannel-2] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing CONNECT user=c45207daf3e54a8a8166d99776d0af58 session=5k22tuss
+2025-12-19 17:42:06.988 [clientOutboundChannel-1] TRACE o.s.m.simp.stomp.StompEncoder - Encoding STOMP CONNECTED, headers={version=[1.1], heart-beat=[0,0], user-name=[c45207daf3e54a8a8166d99776d0af58]}
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SUBSCRIBE {id=[sub-0], destination=[/topic/chat]} session=null
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SUBSCRIBE /topic/chat id=sub-0 session=5k22tuss
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SUBSCRIBE
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /topic/chat
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: 5k22tuss
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 用戶: c45207daf3e54a8a8166d99776d0af58
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:06.992 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): SUBSCRIBE
+2025-12-19 17:42:06.993 [clientInboundChannel-5] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing SUBSCRIBE /topic/chat id=sub-0 session=5k22tuss
+2025-12-19 17:42:11.134 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:16.137 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:18.621 [http-nio-8080-exec-6] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:18.622 [http-nio-8080-exec-6] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/info?t=1766137338618
+2025-12-19 17:42:18.653 [http-nio-8080-exec-7] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:18.655 [http-nio-8080-exec-7] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/000/kadekzuc/websocket
+2025-12-19 17:42:18.656 [http-nio-8080-exec-7] INFO  c.h.s.Userhandshakehandler - 登入用戶 ID: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:18.670 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New WebSocketServerSockJsSession[id=kadekzuc]
+2025-12-19 17:42:18.673 [http-nio-8080-exec-8] TRACE o.s.m.simp.stomp.StompDecoder - Decoded CONNECT {accept-version=[1.1,1.0], heart-beat=[10000,10000]} session=null
+2025-12-19 17:42:18.674 [http-nio-8080-exec-8] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: CONNECT user=9835c97eeb2c4b99ac275671c3ebec5f session=kadekzuc
+2025-12-19 17:42:18.674 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:18.674 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: CONNECT
+2025-12-19 17:42:18.675 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: null
+2025-12-19 17:42:18.675 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: kadekzuc
+2025-12-19 17:42:18.675 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:18.675 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:18.676 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): CONNECT
+2025-12-19 17:42:18.676 [clientInboundChannel-8] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing CONNECT user=9835c97eeb2c4b99ac275671c3ebec5f session=kadekzuc
+2025-12-19 17:42:18.679 [clientOutboundChannel-2] TRACE o.s.m.simp.stomp.StompEncoder - Encoding STOMP CONNECTED, headers={version=[1.1], heart-beat=[0,0], user-name=[9835c97eeb2c4b99ac275671c3ebec5f]}
+2025-12-19 17:42:18.683 [http-nio-8080-exec-9] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SUBSCRIBE {id=[sub-0], destination=[/topic/chat]} session=null
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SUBSCRIBE /topic/chat id=sub-0 session=kadekzuc
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SUBSCRIBE
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /topic/chat
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: kadekzuc
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:18.684 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): SUBSCRIBE
+2025-12-19 17:42:18.685 [clientInboundChannel-11] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing SUBSCRIBE /topic/chat id=sub-0 session=kadekzuc
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SUBSCRIBE {id=[sub-1], destination=[/user/topic/privateMessage]} session=null
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SUBSCRIBE /user/topic/privateMessage id=sub-1 session=kadekzuc
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SUBSCRIBE
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /user/topic/privateMessage
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: kadekzuc
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:18.686 [http-nio-8080-exec-9] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): SUBSCRIBE
+2025-12-19 17:42:18.688 [clientInboundChannel-15] TRACE o.s.m.s.u.UserDestinationMessageHandler - Translated /user/topic/privateMessage -> [/topic/privateMessage-userkadekzuc]
+2025-12-19 17:42:18.690 [clientInboundChannel-15] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing SUBSCRIBE destination=/topic/privateMessage-userkadekzuc subscriptionId=sub-1 session=kadekzuc user=9835c97eeb2c4b99ac275671c3ebec5f payload=byte[0]
+2025-12-19 17:42:21.150 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:22.952 [http-nio-8080-exec-1] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:22.953 [http-nio-8080-exec-1] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/info?t=1766137342949
+2025-12-19 17:42:22.964 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler@b1b471
+2025-12-19 17:42:22.965 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.t.h.DefaultSockJsService - Processing transport request: GET http://localhost:8080/our-websocket/579/jao4u1r0/websocket
+2025-12-19 17:42:22.966 [http-nio-8080-exec-2] INFO  c.h.s.Userhandshakehandler - 登入用戶 ID: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:22.970 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New WebSocketServerSockJsSession[id=jao4u1r0]
+2025-12-19 17:42:22.989 [http-nio-8080-exec-3] TRACE o.s.m.simp.stomp.StompDecoder - Decoded CONNECT {accept-version=[1.1,1.0], heart-beat=[10000,10000]} session=null
+2025-12-19 17:42:22.989 [http-nio-8080-exec-3] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: CONNECT user=189426ccd63642c7a4f8d18dde6103bb session=jao4u1r0
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: CONNECT
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: null
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: jao4u1r0
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:22.990 [http-nio-8080-exec-3] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): CONNECT
+2025-12-19 17:42:22.991 [clientInboundChannel-17] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing CONNECT user=189426ccd63642c7a4f8d18dde6103bb session=jao4u1r0
+2025-12-19 17:42:22.992 [clientOutboundChannel-3] TRACE o.s.m.simp.stomp.StompEncoder - Encoding STOMP CONNECTED, headers={version=[1.1], heart-beat=[0,0], user-name=[189426ccd63642c7a4f8d18dde6103bb]}
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SUBSCRIBE {id=[sub-0], destination=[/topic/chat]} session=null
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SUBSCRIBE /topic/chat id=sub-0 session=jao4u1r0
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SUBSCRIBE
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /topic/chat
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: jao4u1r0
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:22.995 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): SUBSCRIBE
+2025-12-19 17:42:22.996 [clientInboundChannel-20] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing SUBSCRIBE /topic/chat id=sub-0 session=jao4u1r0
+2025-12-19 17:42:22.996 [http-nio-8080-exec-4] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SUBSCRIBE {id=[sub-1], destination=[/user/topic/privateMessage]} session=null
+2025-12-19 17:42:22.996 [http-nio-8080-exec-4] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SUBSCRIBE /user/topic/privateMessage id=sub-1 session=jao4u1r0
+2025-12-19 17:42:22.996 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SUBSCRIBE
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /user/topic/privateMessage
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: jao4u1r0
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:22.997 [http-nio-8080-exec-4] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): SUBSCRIBE
+2025-12-19 17:42:22.997 [clientInboundChannel-24] TRACE o.s.m.s.u.UserDestinationMessageHandler - Translated /user/topic/privateMessage -> [/topic/privateMessage-userjao4u1r0]
+2025-12-19 17:42:22.997 [clientInboundChannel-24] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing SUBSCRIBE destination=/topic/privateMessage-userjao4u1r0 subscriptionId=sub-1 session=jao4u1r0 user=189426ccd63642c7a4f8d18dde6103bb payload=byte[0]
+2025-12-19 17:42:26.153 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:31.168 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:36.181 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:37.911 [http-nio-8080-exec-5] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SEND {destination=[/ws/privateMessage], content-length=[58]} session=null
+2025-12-19 17:42:37.912 [http-nio-8080-exec-5] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SEND /ws/privateMessage session=kadekzuc
+2025-12-19 17:42:37.913 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:42:37.913 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SEND
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /ws/privateMessage
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: kadekzuc
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): MESSAGE
+2025-12-19 17:42:37.914 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容類型: [B
+2025-12-19 17:42:37.915 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容: [123, 34, 99, 111, 110, 116, 101, 110, 116, 34, 58, 34, 116, 101, 115, 116, 34, 44, 34, 105, 100, 34, 58, 34, 49, 56, 57, 52, 50, 54, 99, 99, 100, 54, 51, 54, 52, 50, 99, 55, 97, 52, 102, 56, 100, 49, 56, 100, 100, 101, 54, 49, 48, 51, 98, 98, 34, 125]
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息頭: {simpMessageType=MESSAGE, stompCommand=SEND, nativeHeaders={destination=[/ws/privateMessage], content-length=[58]}, simpSessionAttributes={}, simpHeartbeat=[J@698246b, simpUser=9835c97eeb2c4b99ac275671c3ebec5f, simpSessionId=kadekzuc, simpDestination=/ws/privateMessage}
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容（字串）: {"content":"test","id":"189426ccd63642c7a4f8d18dde6103bb"}
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑（用於路由）: /ws/privateMessage
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 預期的 @MessageMapping 路徑: /privateMessage
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 應該匹配 @MessageMapping("/privateMessage")
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道類型: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:42:37.916 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道字符串: ExecutorSubscribableChannel[clientInboundChannel]
+2025-12-19 17:42:37.917 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - ✓ 訊息已進入 clientInboundChannel
+2025-12-19 17:42:37.917 [http-nio-8080-exec-5] INFO  c.h.s.config.WebSocketInterceptor - 完整訊息頭映射: {simpMessageType=MESSAGE, stompCommand=SEND, nativeHeaders={destination=[/ws/privateMessage], content-length=[58]}, simpSessionAttributes={}, simpHeartbeat=[J@698246b, simpUser=9835c97eeb2c4b99ac275671c3ebec5f, simpSessionId=kadekzuc, simpDestination=/ws/privateMessage}
+2025-12-19 17:42:37.917 [http-nio-8080-exec-5] WARN  c.h.s.config.WebSocketInterceptor - ⚠ 訊息在 clientInboundChannel 中處理，這可能不是預期的行為，目標: /ws/privateMessage
+2025-12-19 17:42:37.919 [clientInboundChannel-25] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Searching methods to handle SEND /ws/privateMessage session=kadekzuc, lookupDestination='/privateMessage'
+2025-12-19 17:42:37.921 [clientInboundChannel-25] TRACE o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Found 1 handler methods: [{[MESSAGE],[/privateMessage]}]
+2025-12-19 17:42:37.922 [clientInboundChannel-25] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Invoking MessageController#privateMessage[2 args]
+2025-12-19 17:42:38.022 [clientInboundChannel-25] TRACE o.s.messaging.handler.HandlerMethod - Arguments: [9835c97eeb2c4b99ac275671c3ebec5f, Message(content=test, recipient=null, id=189426ccd63642c7a4f8d18dde6103bb)]
+2025-12-19 17:42:38.022 [clientInboundChannel-25] ERROR c.h.s.MessageController - === 私信接收開始（ERROR 級別確保可見） ===
+2025-12-19 17:42:38.022 [clientInboundChannel-25] INFO  c.h.s.MessageController - === 私信接收開始 ===
+2025-12-19 17:42:38.022 [clientInboundChannel-25] INFO  c.h.s.MessageController - 收到私信請求，發送者: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:38.024 [clientInboundChannel-25] INFO  c.h.s.MessageController - 訊息物件: Message(content=test, recipient=null, id=189426ccd63642c7a4f8d18dde6103bb)
+2025-12-19 17:42:38.032 [clientInboundChannel-25] INFO  c.h.s.MessageController - === 私信發送調試 ===
+2025-12-19 17:42:38.032 [clientInboundChannel-25] INFO  c.h.s.MessageController - 發送者ID: 9835c97eeb2c4b99ac275671c3ebec5f
+2025-12-19 17:42:38.032 [clientInboundChannel-25] INFO  c.h.s.MessageController - 接收者ID: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:38.032 [clientInboundChannel-25] INFO  c.h.s.MessageController - 訊息內容: test
+2025-12-19 17:42:38.032 [clientInboundChannel-25] INFO  c.h.s.MessageController - 目標路徑: /user/189426ccd63642c7a4f8d18dde6103bb/topic/privateMessage
+2025-12-19 17:42:38.051 [clientInboundChannel-25] TRACE o.s.m.s.u.UserDestinationMessageHandler - Translated /user/189426ccd63642c7a4f8d18dde6103bb/topic/privateMessage -> [/topic/privateMessage-userjao4u1r0]
+2025-12-19 17:42:38.051 [clientInboundChannel-25] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Processing MESSAGE destination=/topic/privateMessage-userjao4u1r0 session=null payload={"content":"用戶：9835c97eeb2c4b99ac275671c3ebec5f發送的信息：test"}
+2025-12-19 17:42:38.052 [clientInboundChannel-25] DEBUG o.s.m.s.b.SimpleBrokerMessageHandler - Broadcasting to 1 sessions.
+2025-12-19 17:42:38.056 [clientInboundChannel-25] INFO  c.h.s.MessageController - 私信已發送到目標用戶: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:42:38.056 [clientOutboundChannel-4] TRACE o.s.m.simp.stomp.StompEncoder - Encoding STOMP MESSAGE, headers={destination=[/user/topic/privateMessage], content-type=[application/json], subscription=[sub-1], message-id=[jao4u1r0-0]}
+2025-12-19 17:42:38.217 [clientInboundChannel-25] ERROR c.h.s.service.ChatMessageService - 保存私信訊息失敗: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:210)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:190)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:177)
+	at org.springframework.data.redis.core.script.DefaultScriptExecutor.execute(DefaultScriptExecutor.java:58)
+	at org.springframework.data.redis.core.script.DefaultScriptExecutor.execute(DefaultScriptExecutor.java:52)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:344)
+	at com.hejz.springbootstomp.service.ChatMessageService.savePrivateMessage(ChatMessageService.java:184)
+	at com.hejz.springbootstomp.MessageController.privateMessage(MessageController.java:181)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:569)
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511)
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:524)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:458)
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:109)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 30 common frames omitted
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.lambda$null$0(LettucePoolingConnectionProvider.java:97)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:211)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:201)
+	at org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:70)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:571)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:298)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:223)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:122)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:117)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:103)
+	... 31 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: NOAUTH HELLO must be called with the client already authenticated, otherwise the HELLO <proto> AUTH <user> <pass> option can be used to authenticate the client and select the RESP protocol version at the same time
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:137)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:110)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2025-12-19 17:42:38.218 [clientInboundChannel-25] INFO  c.h.s.MessageController - 私信已持久化到 Redis
+2025-12-19 17:42:38.218 [clientInboundChannel-25] INFO  c.h.s.MessageController - === 私信處理完成 ===
+2025-12-19 17:42:41.192 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:46.202 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:51.207 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:42:56.219 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:01.226 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:06.231 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:11.236 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:16.247 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:21.258 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:26.274 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:31.278 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:36.294 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:41.301 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:46.305 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:51.319 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:43:56.332 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:01.334 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:06.342 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:11.352 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:16.370 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:21.382 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:26.387 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:31.399 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:36.405 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:41.422 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:46.430 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:51.434 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:44:56.436 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:01.452 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:06.461 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:11.466 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:16.478 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:21.483 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:26.489 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:31.502 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:36.506 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:41.515 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:46.532 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:51.536 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:56.550 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:45:59.086 [http-nio-8080-exec-8] TRACE o.s.m.simp.stomp.StompDecoder - Decoded SEND {destination=[/ws/message], content-length=[18]} session=null
+2025-12-19 17:45:59.086 [http-nio-8080-exec-8] TRACE o.s.w.s.m.StompSubProtocolHandler - From client: SEND /ws/message session=jao4u1r0
+2025-12-19 17:45:59.086 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - === WebSocket 訊息攔截 ===
+2025-12-19 17:45:59.087 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - STOMP 命令: SEND
+2025-12-19 17:45:59.087 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑: /ws/message
+2025-12-19 17:45:59.087 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 會話 ID: jao4u1r0
+2025-12-19 17:45:59.087 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 用戶: 189426ccd63642c7a4f8d18dde6103bb
+2025-12-19 17:45:59.087 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:45:59.089 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息類型 (simpMessageType): MESSAGE
+2025-12-19 17:45:59.089 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容類型: [B
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容: [123, 34, 99, 111, 110, 116, 101, 110, 116, 34, 58, 34, 116, 101, 115, 116, 34, 125]
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息頭: {simpMessageType=MESSAGE, stompCommand=SEND, nativeHeaders={destination=[/ws/message], content-length=[18]}, simpSessionAttributes={}, simpHeartbeat=[J@45b8d16c, simpUser=189426ccd63642c7a4f8d18dde6103bb, simpSessionId=jao4u1r0, simpDestination=/ws/message}
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息內容（字串）: {"content":"test"}
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 目標路徑（用於路由）: /ws/message
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 預期的 @MessageMapping 路徑: /message
+2025-12-19 17:45:59.090 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 應該匹配 @MessageMapping("/message")
+2025-12-19 17:45:59.091 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道類型: org.springframework.messaging.support.ExecutorSubscribableChannel
+2025-12-19 17:45:59.091 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 訊息通道字符串: ExecutorSubscribableChannel[clientInboundChannel]
+2025-12-19 17:45:59.091 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - ✓ 訊息已進入 clientInboundChannel
+2025-12-19 17:45:59.092 [http-nio-8080-exec-8] INFO  c.h.s.config.WebSocketInterceptor - 完整訊息頭映射: {simpMessageType=MESSAGE, stompCommand=SEND, nativeHeaders={destination=[/ws/message], content-length=[18]}, simpSessionAttributes={}, simpHeartbeat=[J@45b8d16c, simpUser=189426ccd63642c7a4f8d18dde6103bb, simpSessionId=jao4u1r0, simpDestination=/ws/message}
+2025-12-19 17:45:59.092 [http-nio-8080-exec-8] WARN  c.h.s.config.WebSocketInterceptor - ⚠ 訊息在 clientInboundChannel 中處理，這可能不是預期的行為，目標: /ws/message
+2025-12-19 17:45:59.093 [clientInboundChannel-28] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Searching methods to handle SEND /ws/message session=jao4u1r0, lookupDestination='/message'
+2025-12-19 17:45:59.094 [clientInboundChannel-28] TRACE o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Found 1 handler methods: [{[MESSAGE],[/message]}]
+2025-12-19 17:45:59.094 [clientInboundChannel-28] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Invoking MessageController#message[2 args]
+2025-12-19 17:45:59.095 [clientInboundChannel-28] TRACE o.s.messaging.handler.HandlerMethod - Arguments: [189426ccd63642c7a4f8d18dde6103bb, Message(content=test, recipient=null, id=null)]
+2025-12-19 17:45:59.095 [clientInboundChannel-28] INFO  c.h.s.MessageController - === 公共訊息接收 ===
+2025-12-19 17:45:59.095 [clientInboundChannel-28] INFO  c.h.s.MessageController - 訊息內容: test
+2025-12-19 17:45:59.095 [clientInboundChannel-28] INFO  c.h.s.MessageController - 發布到 Redis /topic/chat 頻道
+2025-12-19 17:45:59.118 [clientInboundChannel-28] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Searching methods to handle RedisConnectionFailureException
+2025-12-19 17:45:59.121 [clientInboundChannel-28] ERROR o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Unhandled exception from message handler method
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:210)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:190)
+	at org.springframework.data.redis.core.RedisTemplate.convertAndSend(RedisTemplate.java:847)
+	at com.hejz.springbootstomp.RedisMessagePublisher.publish(RedisMessagePublisher.java:88)
+	at com.hejz.springbootstomp.RedisMessagePublisher.publish(RedisMessagePublisher.java:124)
+	at com.hejz.springbootstomp.MessageController.message(MessageController.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:569)
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:511)
+	at org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:94)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:524)
+	at org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:458)
+	at org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:109)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 28 common frames omitted
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.lambda$null$0(LettucePoolingConnectionProvider.java:97)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:211)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:201)
+	at org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:70)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:571)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:298)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:223)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:122)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:117)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:103)
+	... 29 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: NOAUTH HELLO must be called with the client already authenticated, otherwise the HELLO <proto> AUTH <user> <pass> option can be used to authenticate the client and select the RESP protocol version at the same time
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:137)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:110)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:746)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:681)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:598)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2025-12-19 17:46:01.554 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:06.566 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:11.584 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:16.594 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:21.610 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:26.619 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:31.632 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:36.635 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:41.646 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:46.650 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:51.661 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:46:56.666 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:01.676 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:06.692 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:11.697 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:16.710 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:21.721 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:26.730 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:31.734 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:36.743 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:41.749 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:46.764 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:51.767 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:47:56.782 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:01.789 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:06.801 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:11.805 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:16.811 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:21.827 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:26.837 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:31.845 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:36.849 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:41.861 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:46.867 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:51.883 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:48:56.886 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:01.900 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:06.909 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:11.926 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:16.940 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:21.958 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:26.969 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:31.984 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:36.993 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:42.002 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:47.005 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:52.030 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:49:57.033 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:02.048 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:07.056 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:12.070 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:17.081 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:22.097 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:27.105 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:32.118 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:37.125 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:42.138 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:47.146 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:52.148 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:50:57.152 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:02.165 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:07.177 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:12.192 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:17.209 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:22.214 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:27.223 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:32.242 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:37.247 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:42.253 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:47.269 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:52.281 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:51:57.296 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:02.312 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:07.321 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:12.329 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:17.336 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:22.353 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:27.366 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:32.383 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:37.394 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:42.399 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:47.412 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:52.428 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:52:57.436 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:02.452 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:07.470 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:12.482 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:17.488 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:22.506 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:27.515 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:32.534 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:37.540 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:42.546 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:47.554 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:52.572 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:53:57.580 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:02.599 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:07.603 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:12.616 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:17.633 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:22.645 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:27.663 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:32.691 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:37.712 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:42.727 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:47.746 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:52.757 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:54:57.775 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:02.802 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:07.809 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:12.820 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:17.837 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:22.853 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:27.870 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:32.876 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:37.887 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:42.900 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:47.914 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:52.932 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:55:57.936 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:02.946 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:07.957 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:12.962 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:17.978 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:22.991 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:27.995 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:33.003 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:38.011 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:43.020 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:48.030 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:53.033 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:56:58.037 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:03.043 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:08.056 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:13.076 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:18.087 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:23.102 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:28.106 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:33.121 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:38.140 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:43.145 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:48.152 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:53.159 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:57:58.177 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:03.185 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:08.195 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:13.211 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:18.226 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:23.231 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:28.234 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:33.238 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:38.251 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:43.255 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:48.264 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:53.275 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:58:58.289 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:03.301 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:08.305 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:13.317 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:18.327 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:23.336 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:28.354 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:33.369 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:38.376 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:43.383 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:48.394 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:53.409 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 17:59:58.421 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:03.432 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:08.439 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:13.451 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:18.458 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:23.461 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:28.465 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:33.479 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:38.495 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:43.511 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:48.530 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:53.536 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:00:58.548 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:03.554 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:08.569 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:13.576 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:18.594 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:23.605 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:28.609 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:33.625 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:38.638 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:43.655 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:48.668 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:53.682 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:01:58.697 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:03.708 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:08.715 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:13.731 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:18.733 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:23.748 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:28.750 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:33.752 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:38.761 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:43.764 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:48.781 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:53.785 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:02:58.803 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:03.805 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:08.817 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:13.831 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:18.833 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:23.837 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:28.842 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:33.856 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:38.864 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:43.879 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:48.890 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:53.918 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:03:58.926 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:03.930 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:08.938 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:13.951 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:18.961 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:23.965 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:28.980 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:33.983 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:38.991 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:44.006 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:49.018 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:54.035 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:04:59.047 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:04.049 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:09.061 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:14.064 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:19.074 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:24.086 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:29.100 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:34.102 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:39.110 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:44.126 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:49.135 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:54.146 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:05:59.157 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:04.173 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:09.189 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:14.201 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:19.203 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:24.207 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:29.219 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:34.231 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:39.236 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:44.253 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:49.265 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:54.282 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:06:59.298 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:04.311 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:09.329 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:14.341 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:19.343 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:24.352 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:29.359 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:34.361 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:39.366 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:44.373 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:49.383 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:54.391 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:07:59.396 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:04.414 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:09.429 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:14.432 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:19.435 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:24.444 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:29.446 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:34.459 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:39.462 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:44.466 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:49.474 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:54.487 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:08:59.497 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:04.501 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:09.504 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:14.513 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:19.520 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:24.539 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:29.550 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:34.554 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:39.563 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:44.571 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:49.576 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:54.592 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:09:58.464 [MessageBroker-12] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[3 current WS(3)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 30], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4], sockJsScheduler[pool size = 16, active threads = 1, queued tasks = 4, completed tasks = 533]
+2025-12-19 18:09:59.602 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:04.604 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:09.614 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:14.630 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:19.633 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:24.637 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:29.650 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:34.653 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:39.667 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:44.678 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:49.682 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:54.698 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:10:59.702 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:04.705 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:09.711 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:14.715 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:19.726 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:24.739 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:29.752 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:34.767 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:39.780 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:44.784 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:49.790 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:54.807 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:11:59.818 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:04.821 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:09.834 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:14.841 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:19.856 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:24.859 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:29.862 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:34.874 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:39.887 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:44.898 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:49.905 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:54.919 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:12:59.929 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:04.937 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:09.945 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:14.948 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:19.962 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:24.965 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:29.974 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:34.991 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:40.006 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:45.016 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:50.026 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:13:55.035 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:00.038 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:05.055 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:10.062 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:15.065 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:20.081 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:25.086 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:30.093 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:35.098 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:40.102 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:45.115 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:50.132 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:14:55.150 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:00.154 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:05.169 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:10.184 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:15.199 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:20.201 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:25.205 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:30.218 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:35.230 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:40.235 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:45.249 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:50.252 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:15:55.261 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:00.264 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:05.281 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:10.292 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:15.305 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:20.311 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:25.330 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:30.333 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:35.346 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:40.350 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:45.352 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:50.364 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:16:55.382 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:00.384 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:05.396 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:10.407 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:15.417 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:20.423 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:25.426 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:30.441 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:35.443 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:40.448 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:45.451 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:50.460 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:17:55.465 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:00.480 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:05.496 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:10.508 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:15.511 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:20.519 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:25.536 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:30.541 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:35.546 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:40.550 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:45.555 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:50.573 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:18:55.579 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:00.589 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:05.604 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:10.622 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:15.629 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:20.646 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:25.649 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:30.659 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:35.663 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:40.666 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:45.671 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:50.676 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:19:55.686 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:00.690 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:05.705 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:10.717 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:15.732 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:20.735 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:25.746 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:30.748 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:35.751 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:40.767 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:45.779 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:50.797 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:20:55.810 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:00.816 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:05.823 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:10.835 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:15.853 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:20.864 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:25.870 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:30.884 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:35.901 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:40.905 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:45.909 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:50.919 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:21:55.937 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:00.951 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:05.965 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:10.975 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:15.986 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:20.996 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:25.998 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:31.001 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:36.004 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:41.007 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:46.013 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:51.030 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:22:56.034 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:01.044 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:06.056 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:11.059 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:16.062 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:21.065 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:26.074 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:31.082 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:36.098 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:41.100 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:46.114 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:51.128 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:23:56.131 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:01.136 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:06.148 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:11.150 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:16.152 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:21.164 [pool-2-thread-1] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms
+2025-12-19 18:24:26.180 [pool-2-thread-2] ERROR o.s.d.r.l.RedisMessageListenerContainer - Connection failure occurred. Restarting subscription task after 5000 ms

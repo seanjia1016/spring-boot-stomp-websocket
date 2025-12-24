@@ -75,3 +75,15 @@ Write-Host "  ✓ Java 檔案有語法高亮" -ForegroundColor Gray
 Write-Host "  ✓ 自動完成功能正常" -ForegroundColor Gray
 Write-Host ""
 
+
+
+
+
+
+
+
+
+
+
+
+

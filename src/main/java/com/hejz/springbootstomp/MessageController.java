@@ -2,13 +2,11 @@ package com.hejz.springbootstomp;
 
 
 import com.hejz.springbootstomp.dto.Message;
-import com.hejz.springbootstomp.dto.ResponseMessage;
+import com.hejz.springbootstomp.dto.PrivateMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
@@ -47,6 +45,12 @@ public class MessageController {
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
+    @Autowired
+    private com.hejz.springbootstomp.service.ChatMessageService chatMessageService;
+    
+    @Autowired
+    private com.hejz.springbootstomp.service.AgentService agentService;
+
     /**
      * 處理公共聊天訊息
      * 
@@ -75,7 +79,7 @@ public class MessageController {
      * @see com.hejz.springbootstomp.MessageControllerTests#testMessagePublishesToRedis()
      */
     @MessageMapping("/message")
-    public void message(final Message message) throws InterruptedException {
+    public void message(final Principal principal, final Message message) throws InterruptedException {
         // 對訊息內容進行 HTML 轉義，防止 XSS 攻擊
         String escapedContent = HtmlUtils.htmlEscape(message.getContent());
         
@@ -86,22 +90,27 @@ public class MessageController {
         // 發布到 Redis，Redis 監聽器會轉發到所有節點的 WebSocket 客戶端
         redisPublisher.publish(escapedContent);
         
-        log.info("公共訊息已發布到 Redis");
+        // 持久化訊息到 Redis（使用 Lua 腳本確保原子性）
+        String senderId = principal != null ? principal.getName() : "system";
+        chatMessageService.savePublicMessage(senderId, null, escapedContent);
+        
+        log.info("公共訊息已發布到 Redis 並持久化");
     }
 
     /**
      * 處理個人私信訊息
      * 
-     * <p>此方法接收來自 WebSocket 客戶端的私信訊息，直接發送給指定的接收者。
-     * 私信不經過 Redis，僅在單一節點內處理，確保訊息即時性和隱私性。
+     * <p>此方法接收來自 WebSocket 客戶端的私信訊息，通過 Redis Pub/Sub 機制
+     * 發送給指定的接收者，支援跨節點私信。
      * 
      * <p>處理流程：
      * <ol>
      *   <li>接收客戶端發送的私信（透過 STOMP 協議，目標：ws/privateMessage）</li>
-     *   <li>對訊息內容進行 HTML 轉義</li>
+     *   <li>對訊息內容進行 HTML 轉義，防止 XSS 攻擊</li>
      *   <li>從訊息物件中提取接收者 ID（優先使用 id，其次使用 recipient）</li>
-     *   <li>構建回應訊息，包含發送者資訊</li>
-     *   <li>直接發送給目標用戶的 WebSocket 連接</li>
+     *   <li>構建 PrivateMessage 物件，包含發送者、接收者和訊息內容</li>
+     *   <li>發布到 Redis /topic/privateMessage 頻道</li>
+     *   <li>Redis 監聽器接收後轉發給目標用戶（僅在目標用戶連接的節點）</li>
      * </ol>
      * 
      * <p>接收者識別：
@@ -111,11 +120,11 @@ public class MessageController {
      *   <li>如果兩者都為空，則發送給發送者自己（用於測試）</li>
      * </ul>
      * 
-     * <p>注意事項：
+     * <p>多節點支援：
      * <ul>
-     *   <li>私信僅在單一節點內有效，不支援跨節點私信</li>
-     *   <li>接收者必須與發送者在同一節點上連接</li>
-     *   <li>如需跨節點私信，需要額外的路由機制</li>
+     *   <li>通過 Redis Pub/Sub 實現跨節點私信</li>
+     *   <li>所有節點都訂閱 /topic/privateMessage 頻道</li>
+     *   <li>只有目標用戶連接的節點才會轉發訊息</li>
      * </ul>
      * 
      * @param principal 發送者的身份資訊，包含發送者的唯一 ID
@@ -133,7 +142,6 @@ public class MessageController {
      */
     @MessageMapping("/privateMessage")
     public void privateMessage(final Principal principal, final Message message) throws InterruptedException {
-        log.error("=== 私信接收開始（ERROR 級別確保可見） ===");
         log.info("=== 私信接收開始 ===");
         log.info("收到私信請求，發送者: {}", principal != null ? principal.getName() : "null");
         log.info("訊息物件: {}", message != null ? message.toString() : "null");
@@ -150,8 +158,24 @@ public class MessageController {
         
         // 對訊息內容進行 HTML 轉義，防止 XSS 攻擊
         String escapedContent = HtmlUtils.htmlEscape(message.getContent());
-        // 構建回應訊息，包含發送者資訊
-        String responseContent = "用戶：" + principal.getName() + "發送的信息：" + escapedContent;
+        
+        // 判斷發送者是專員A還是專員B
+        String senderName = "專員";
+        try {
+            String senderId = principal.getName();
+            String agentAId = agentService.getAgentAId();
+            String agentBId = agentService.getAgentBId();
+            
+            if (agentAId != null && agentAId.equals(senderId)) {
+                senderName = "專員A";
+            } else if (agentBId != null && agentBId.equals(senderId)) {
+                senderName = "專員B";
+            } else {
+                senderName = "專員";
+            }
+        } catch (Exception e) {
+            log.warn("無法判斷專員類型，使用默認值: {}", e.getMessage());
+        }
         
         // 從 message 中獲取接收者 ID（優先使用 id，其次使用 recipient）
         String recipient = message.getId() != null ? message.getId() : 
@@ -159,16 +183,27 @@ public class MessageController {
         
         log.info("=== 私信發送調試 ===");
         log.info("發送者ID: {}", principal.getName());
+        log.info("發送者名稱: {}", senderName);
         log.info("接收者ID: {}", recipient);
         log.info("訊息內容: {}", escapedContent);
-        log.info("目標路徑: /user/{}/topic/privateMessage", recipient);
-        
-        ResponseMessage responseMessage = new ResponseMessage(responseContent);
         
         try {
-            // 直接發送給目標用戶，不經過 Redis
-            messagingTemplate.convertAndSendToUser(recipient, "/topic/privateMessage", responseMessage);
-            log.info("私信已發送到目標用戶: {}", recipient);
+            // 構建 PrivateMessage 物件
+            PrivateMessage privateMessage = new PrivateMessage();
+            privateMessage.setType("private");
+            privateMessage.setSenderId(principal.getName());
+            privateMessage.setSenderName(senderName);
+            privateMessage.setRecipientId(recipient);
+            privateMessage.setContent(escapedContent);
+            privateMessage.setTimestamp(System.currentTimeMillis());
+            
+            // 發布到 Redis /topic/privateMessage 頻道
+            redisPublisher.publishPrivateMessage(privateMessage);
+            log.info("私信已發布到 Redis /topic/privateMessage 頻道");
+            
+            // 持久化私信訊息到 Redis（使用 Lua 腳本確保原子性）
+            chatMessageService.savePrivateMessage(principal.getName(), senderName, recipient, escapedContent);
+            log.info("私信已持久化到 Redis");
         } catch (Exception e) {
             log.error("發送私信時發生錯誤: {}", e.getMessage(), e);
             throw e;

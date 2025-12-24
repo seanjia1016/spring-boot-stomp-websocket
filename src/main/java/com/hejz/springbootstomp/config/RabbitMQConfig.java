@@ -60,6 +60,21 @@ public class RabbitMQConfig {
     public static final String CLIENT_STATUS_CHECK_DELAY_ROUTING_KEY = "client.status.check.delay";
 
     /**
+     * 專員ID變更通知佇列名稱
+     */
+    public static final String AGENT_ID_CHANGE_QUEUE = "agent.id.change.queue";
+
+    /**
+     * 專員ID變更通知交換器名稱
+     */
+    public static final String AGENT_ID_CHANGE_EXCHANGE = "agent.id.change.exchange";
+
+    /**
+     * 專員ID變更通知路由鍵
+     */
+    public static final String AGENT_ID_CHANGE_ROUTING_KEY = "agent.id.change";
+
+    /**
      * 配置 JSON 訊息轉換器
      * 
      * @return Jackson2JsonMessageConverter 實例
@@ -178,6 +193,45 @@ public class RabbitMQConfig {
                 .bind(clientStatusCheckQueue())
                 .to(clientStatusCheckDlxExchange())
                 .with(CLIENT_STATUS_CHECK_ROUTING_KEY);
+    }
+
+    /**
+     * 定義專員ID變更通知交換器
+     * 
+     * <p>當專員ID變更時，會發送訊息到此交換器，
+     * 然後路由到處理佇列，通知舊的連接斷開。
+     * 
+     * @return DirectExchange 實例
+     */
+    @Bean
+    public DirectExchange agentIdChangeExchange() {
+        return new DirectExchange(AGENT_ID_CHANGE_EXCHANGE);
+    }
+
+    /**
+     * 定義專員ID變更通知佇列
+     * 
+     * <p>此佇列用於接收專員ID變更通知，
+     * 消費者會從此佇列接收訊息並處理。
+     * 
+     * @return Queue 實例
+     */
+    @Bean
+    public Queue agentIdChangeQueue() {
+        return QueueBuilder.durable(AGENT_ID_CHANGE_QUEUE).build();
+    }
+
+    /**
+     * 綁定專員ID變更通知佇列到交換器
+     * 
+     * @return Binding 實例
+     */
+    @Bean
+    public Binding agentIdChangeBinding() {
+        return BindingBuilder
+                .bind(agentIdChangeQueue())
+                .to(agentIdChangeExchange())
+                .with(AGENT_ID_CHANGE_ROUTING_KEY);
     }
 }
 

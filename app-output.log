@@ -1,0 +1,744 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.hejz:spring-boot-stomp >---------------------
+[INFO] Building spring-boot-stomp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.7.18:run (default-cli) > test-compile @ spring-boot-stomp >>>
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 11 resources
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ spring-boot-stomp ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 30 source files to C:\spring-boot-stomp-websocket\target\classes
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[224,115] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[226,77] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[226,103] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[348,131] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[350,93] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java:[350,119] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[INFO] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java: C:\spring-boot-stomp-websocket\src\main\java\com\hejz\springbootstomp\config\RedisConfig.java uses or overrides a deprecated API.
+[INFO] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/config/RedisConfig.java: Recompile with -Xlint:deprecation for details.
+[INFO] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/service/AgentService.java: Some input files use unchecked or unsafe operations.
+[INFO] /C:/spring-boot-stomp-websocket/src/main/java/com/hejz/springbootstomp/service/AgentService.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ spring-boot-stomp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ spring-boot-stomp ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 15 source files to C:\spring-boot-stomp-websocket\target\test-classes
+[INFO] /C:/spring-boot-stomp-websocket/src/test/java/com/hejz/springbootstomp/integration/AgentIdChangeIntegrationTest.java: C:\spring-boot-stomp-websocket\src\test\java\com\hejz\springbootstomp\integration\AgentIdChangeIntegrationTest.java uses or overrides a deprecated API.
+[INFO] /C:/spring-boot-stomp-websocket/src/test/java/com/hejz/springbootstomp/integration/AgentIdChangeIntegrationTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /C:/spring-boot-stomp-websocket/src/test/java/com/hejz/springbootstomp/service/AgentServiceTests.java: C:\spring-boot-stomp-websocket\src\test\java\com\hejz\springbootstomp\service\AgentServiceTests.java uses unchecked or unsafe operations.
+[INFO] /C:/spring-boot-stomp-websocket/src/test/java/com/hejz/springbootstomp/service/AgentServiceTests.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] <<< spring-boot:2.7.18:run (default-cli) < test-compile @ spring-boot-stomp <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.7.18:run (default-cli) @ spring-boot-stomp ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.18)
+
+2025-12-22 18:45:41.475 [main] INFO  c.h.s.SpringBootStompApplication - Starting SpringBootStompApplication using Java 17.0.9 on LAPTOP-1FK1FC7K with PID 169784 (C:\spring-boot-stomp-websocket\target\classes started by 賈其翔 in C:\spring-boot-stomp-websocket)
+2025-12-22 18:45:41.479 [main] DEBUG c.h.s.SpringBootStompApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-12-22 18:45:41.480 [main] INFO  c.h.s.SpringBootStompApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-22 18:45:42.063 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-12-22 18:45:42.065 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-12-22 18:45:42.088 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-12-22 18:45:42.561 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-12-22 18:45:42.571 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-22 18:45:42.573 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-22 18:45:42.574 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-12-22 18:45:42.672 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-22 18:45:42.672 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1139 ms
+2025-12-22 18:45:42.749 [main] INFO  c.h.s.config.RedisConfig - 使用連接字符串 URL 格式，密碼長度: 4，密碼值: '1111'
+2025-12-22 18:45:42.750 [main] INFO  c.h.s.config.RedisConfig - Redis 連接字符串: redis://:***@127.0.0.1:6379/0
+2025-12-22 18:45:42.758 [main] INFO  c.h.s.config.RedisConfig - RedisURI 已從連接字符串創建：host=127.0.0.1, port=6379, database=0, hasPassword=true
+2025-12-22 18:45:42.769 [main] INFO  c.h.s.config.RedisConfig - 已設置RESP2協議版本
+2025-12-22 18:45:42.773 [main] INFO  c.h.s.config.RedisConfig - 從 RedisURI 設置密碼到 RedisStandaloneConfiguration（使用 char[]），密碼長度: 4
+2025-12-22 18:45:42.774 [main] INFO  c.h.s.config.RedisConfig - 密碼內容驗證: '1111' (長度: 4)
+2025-12-22 18:45:42.790 [main] INFO  c.h.s.config.RedisConfig - 通過反射調用 setPassword 方法（before afterPropertiesSet），長度: 4
+2025-12-22 18:45:42.946 [main] INFO  c.h.s.config.RedisConfig - 通過反射調用 setPassword 方法（after afterPropertiesSet），長度: 4
+2025-12-22 18:45:42.946 [main] INFO  c.h.s.config.RedisConfig - 找到 connectionProvider: org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider
+2025-12-22 18:45:42.946 [main] INFO  c.h.s.config.RedisConfig - 找到實際 provider: org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider
+2025-12-22 18:45:42.946 [main] INFO  c.h.s.config.RedisConfig - 找到內部 provider/URI: org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider (connectionProvider)
+2025-12-22 18:45:42.946 [main] INFO  c.h.s.config.RedisConfig - StandaloneConnectionProvider 的字段數量: 4
+2025-12-22 18:45:42.946 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: client (類型: io.lettuce.core.RedisClient)
+2025-12-22 18:45:42.946 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: codec (類型: io.lettuce.core.codec.RedisCodec)
+2025-12-22 18:45:42.946 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: readFrom (類型: java.util.Optional)
+2025-12-22 18:45:42.948 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: redisURISupplier (類型: java.util.function.Supplier)
+2025-12-22 18:45:42.949 [main] INFO  c.h.s.config.RedisConfig - 舊的 RedisURI: host=127.0.0.1, port=6379, hasPassword=true, password=***
+2025-12-22 18:45:42.949 [main] INFO  c.h.s.config.RedisConfig - 新的 RedisURI: host=127.0.0.1, port=6379, hasPassword=true, password=***
+2025-12-22 18:45:42.949 [main] INFO  c.h.s.config.RedisConfig - 密碼比較: 舊密碼長度=4, 新密碼長度=4, 是否相同=true
+2025-12-22 18:45:42.949 [main] INFO  c.h.s.config.RedisConfig - ✅ 使用 Unsafe 替換 StandaloneConnectionProvider 的 redisURISupplier
+2025-12-22 18:45:42.950 [main] INFO  c.h.s.config.RedisConfig - 找到 connectionProvider: org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider
+2025-12-22 18:45:42.950 [main] INFO  c.h.s.config.RedisConfig - 找到實際 provider: org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider
+2025-12-22 18:45:42.951 [main] INFO  c.h.s.config.RedisConfig - 找到內部 provider/URI: org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider (connectionProvider)
+2025-12-22 18:45:42.951 [main] INFO  c.h.s.config.RedisConfig - StandaloneConnectionProvider 的字段數量: 4
+2025-12-22 18:45:42.951 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: client (類型: io.lettuce.core.RedisClient)
+2025-12-22 18:45:42.951 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: codec (類型: io.lettuce.core.codec.RedisCodec)
+2025-12-22 18:45:42.951 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: readFrom (類型: java.util.Optional)
+2025-12-22 18:45:42.951 [main] DEBUG c.h.s.config.RedisConfig - 檢查字段: redisURISupplier (類型: java.util.function.Supplier)
+2025-12-22 18:45:42.951 [main] INFO  c.h.s.config.RedisConfig - 舊的 RedisURI: host=127.0.0.1, port=6379, hasPassword=true, password=***
+2025-12-22 18:45:42.951 [main] INFO  c.h.s.config.RedisConfig - 新的 RedisURI: host=127.0.0.1, port=6379, hasPassword=true, password=***
+2025-12-22 18:45:42.952 [main] INFO  c.h.s.config.RedisConfig - 密碼比較: 舊密碼長度=4, 新密碼長度=4, 是否相同=true
+2025-12-22 18:45:42.952 [main] INFO  c.h.s.config.RedisConfig - ✅ 使用 Unsafe 替換 StandaloneConnectionProvider 的 redisURISupplier
+2025-12-22 18:45:42.952 [main] INFO  c.h.s.config.RedisConfig - 通過反射重新設置 RedisStandaloneConfiguration 密碼，長度: 4
+2025-12-22 18:45:42.952 [main] INFO  c.h.s.config.RedisConfig - Redis 連接工廠已配置：host=127.0.0.1, port=6379, database=0, poolMaxActive=8, poolMaxIdle=8, poolMinIdle=0
+2025-12-22 18:45:43.480 [main] WARN  c.h.s.config.RedisConfig - 無法獲取連接進行測試: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+2025-12-22 18:45:43.754 [main] INFO  c.h.s.service.AgentService - 專員ID管理服務已初始化，Lua腳本已載入
+2025-12-22 18:45:43.832 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/our-websocket/**] in 'stompWebSocketHandlerMapping'
+2025-12-22 18:45:43.868 [main] TRACE o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - Looking for @MessageExceptionHandler mappings: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@95e33cc, started on Mon Dec 22 18:45:41 GMT+08:00 2025
+2025-12-22 18:45:43.894 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.MessageController:
+	{[MESSAGE],[/message]}: message(Principal,Message)
+	{[MESSAGE],[/privateMessage]}: privateMessage(Principal,Message)
+2025-12-22 18:45:43.898 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.WsController:
+	
+2025-12-22 18:45:43.899 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.c.AgentController:
+	
+2025-12-22 18:45:43.899 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.c.ChatHistoryController:
+	
+2025-12-22 18:45:43.899 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.h.s.c.HeartbeatController:
+	{[MESSAGE],[/heartbeat]}: handleHeartbeat(Principal,HeartbeatMessage)
+2025-12-22 18:45:43.906 [main] DEBUG o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2025-12-22 18:45:43.926 [main] INFO  c.h.s.config.RedisConfig - 訂閱連接使用連接字符串 URL 格式，密碼長度: 4，密碼值: '1111'
+2025-12-22 18:45:43.928 [main] INFO  c.h.s.config.RedisConfig - Redis 訂閱連接字符串: redis://:***@127.0.0.1:6379/0
+2025-12-22 18:45:43.928 [main] INFO  c.h.s.config.RedisConfig - RedisURI 已從連接字符串創建（訂閱連接）：host=127.0.0.1, port=6379, database=0, hasPassword=true
+2025-12-22 18:45:43.928 [main] INFO  c.h.s.config.RedisConfig - 從 RedisURI 設置密碼到 RedisStandaloneConfiguration（訂閱連接），密碼長度: 4
+2025-12-22 18:45:43.928 [main] INFO  c.h.s.config.RedisConfig - 已設置RESP2協議版本（訂閱連接）
+2025-12-22 18:45:43.929 [main] INFO  c.h.s.config.RedisConfig - 通過反射調用 setPassword 方法（訂閱連接），長度: 4
+2025-12-22 18:45:43.929 [main] INFO  c.h.s.config.RedisConfig - 通過反射重新設置 RedisStandaloneConfiguration 密碼（訂閱連接），長度: 4
+2025-12-22 18:45:43.929 [main] INFO  c.h.s.config.RedisConfig - RedisMessageListenerContainer 專用連接工廠已配置：host=127.0.0.1, port=6379, database=0（非池化）
+2025-12-22 18:45:43.933 [main] INFO  c.h.s.config.RedisConfig - RedisMessageListenerContainer 已配置，將在應用程式啟動後自動連接 Redis
+2025-12-22 18:45:44.006 [Finalizer] WARN  i.l.c.r.DefaultClientResources - io.lettuce.core.resource.DefaultClientResources was not shut down properly, shutdown() was not called before it's garbage-collected. Call shutdown() or shutdown(long,long,TimeUnit) 
+2025-12-22 18:45:44.034 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-12-22 18:45:44.583 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-22 18:45:44.604 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-22 18:45:44.606 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2025-12-22 18:45:44.607 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/ws/]]
+2025-12-22 18:45:44.607 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2025-12-22 18:45:44.607 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2ed7978c]
+2025-12-22 18:45:44.607 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2ed7978c]
+2025-12-22 18:45:44.608 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2ed7978c]]
+2025-12-22 18:45:44.608 [main] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2025-12-22 18:45:44.608 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-22 18:45:44.608 [main] DEBUG o.s.m.s.ExecutorSubscribableChannel - brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2025-12-22 18:45:44.642 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'redisMessageListenerContainer'; nested exception is org.springframework.data.redis.listener.adapter.RedisListenerExecutionFailedException: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+2025-12-22 18:45:44.793 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-22 18:45:44.793 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-22 18:45:44.796 [http-nio-8080-exec-1] ERROR o.s.web.servlet.DispatcherServlet - Context initialization failed
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.796 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Servlet.init() for servlet [dispatcherServlet] threw exception
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.796 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-22 18:45:44.796 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Allocate exception for servlet [dispatcherServlet]
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.797 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-22 18:45:44.797 [http-nio-8080-exec-2] ERROR o.s.web.servlet.DispatcherServlet - Context initialization failed
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.798 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Servlet.init() for servlet [dispatcherServlet] threw exception
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.798 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Allocate exception for servlet [dispatcherServlet]
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:116)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.807 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-22 18:45:44.807 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-22 18:45:44.807 [http-nio-8080-exec-1] ERROR o.s.web.servlet.DispatcherServlet - Context initialization failed
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.808 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Servlet.init() for servlet [dispatcherServlet] threw exception
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.808 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Allocate exception for servlet [dispatcherServlet]
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.808 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-22 18:45:44.808 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-22 18:45:44.808 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+javax.servlet.ServletException: Servlet.init() for servlet [dispatcherServlet] threw exception
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1122)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	... 21 common frames omitted
+2025-12-22 18:45:44.808 [http-nio-8080-exec-2] ERROR o.s.web.servlet.DispatcherServlet - Context initialization failed
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.809 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Servlet.init() for servlet [dispatcherServlet] threw exception
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.809 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Allocate exception for servlet [dispatcherServlet]
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-22 18:45:44.810 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+javax.servlet.ServletException: Servlet.init() for servlet [dispatcherServlet] threw exception
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1122)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:763)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:640)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:427)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:357)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:294)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:237)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:323)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'stompWebSocketHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1322)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:595)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:502)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:491)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:143)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1106)
+	... 21 common frames omitted
+2025-12-22 18:45:44.906 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2025-12-22 18:45:44.906 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-12-22 18:45:44.910 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-12-22 18:45:44.912 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2025-12-22 18:45:44.917 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-12-22 18:45:44.935 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'redisMessageListenerContainer'; nested exception is org.springframework.data.redis.listener.adapter.RedisListenerExecutionFailedException: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:182)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:357)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:156)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:124)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:946)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:594)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.hejz.springbootstomp.SpringBootStompApplication.main(SpringBootStompApplication.java:51)
+Caused by: org.springframework.data.redis.listener.adapter.RedisListenerExecutionFailedException: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:275)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.start(RedisMessageListenerContainer.java:249)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:179)
+	... 14 common frames omitted
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.initialize(RedisMessageListenerContainer.java:1183)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.doSubscribe(RedisMessageListenerContainer.java:318)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:295)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:265)
+	... 16 common frames omitted
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:350)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:215)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 24 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: WRONGPASS invalid username-password pair or user is disabled.
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:745)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:680)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:597)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.449 s
+[INFO] Finished at: 2025-12-22T18:45:46+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.7.18:run (default-cli) on project spring-boot-stomp: Application finished with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -62,6 +62,26 @@
             background: #f44336;
             color: white;
         }
+        .status-online {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .status-offline {
+            color: #999;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-indicator.online {
+            background-color: #4caf50;
+        }
+        .status-indicator.offline {
+            background-color: #999;
+        }
     </style>
 </head>
 <body>
@@ -71,10 +91,10 @@
             <span id="connectionStatus" class="status-badge status-disconnected">未連接</span>
             <div class="mt-2">
                 <small id="myUserId" style="display: block; margin-top: 10px;">等待連接...</small>
-                <small style="display: block; margin-top: 5px;">
-                    專員A的用戶ID: <input type="text" id="targetUserIdInput" placeholder="請輸入專員A的用戶ID" 
-                    style="padding: 2px 8px; border-radius: 3px; border: 1px solid #ccc; width: 300px;">
-                    <button id="loadTargetIdBtn" class="btn btn-sm btn-light" style="margin-left: 5px;">從localStorage載入</button>
+                <small id="targetAgentInfo" style="display: block; margin-top: 5px;">正在獲取專員A的ID...</small>
+                <small id="targetAgentStatus" style="display: block; margin-top: 5px;">
+                    <span class="status-indicator offline"></span>
+                    <span>專員A: 離線</span>
                 </small>
             </div>
         </div>
@@ -125,6 +145,109 @@
         const targetAgent = "專員A";
         let currentUserId = null;
         let targetUserId = null; // 專員A的用戶ID
+        let targetAgentStatus = "OFFLINE"; // 專員A的狀態
+        
+        // 從API獲取專員A的ID和狀態
+        async function fetchTargetAgentId() {
+            try {
+                const response = await fetch('/api/agent/a');
+                const data = await response.json();
+                if (data.success && data.agentId) {
+                    targetUserId = data.agentId;
+                    targetAgentStatus = data.status || "OFFLINE";
+                    document.getElementById('targetAgentInfo').textContent = 
+                        `專員A的ID: ${targetUserId}`;
+                    updateTargetAgentStatus(targetAgentStatus);
+                    console.log('已獲取專員A的ID:', targetUserId, '狀態:', targetAgentStatus);
+                } else {
+                    targetUserId = null;
+                    targetAgentStatus = "OFFLINE";
+                    document.getElementById('targetAgentInfo').textContent = 
+                        '專員A尚未連接，請先開啟專員A頁面';
+                    updateTargetAgentStatus("OFFLINE");
+                    console.warn('專員A尚未連接');
+                }
+            } catch (error) {
+                console.error('獲取專員A的ID失敗:', error);
+                document.getElementById('targetAgentInfo').textContent = 
+                    '無法獲取專員A的ID，請稍後再試';
+                updateTargetAgentStatus("OFFLINE");
+            }
+        }
+        
+        // 更新專員A的狀態顯示
+        function updateTargetAgentStatus(status) {
+            console.log('=== 更新專員A狀態顯示 ===');
+            console.log('新狀態:', status);
+            console.log('舊狀態:', targetAgentStatus);
+            
+            targetAgentStatus = status;
+            const statusEl = document.getElementById('targetAgentStatus');
+            
+            if (!statusEl) {
+                console.error('✗ 找不到狀態顯示元素');
+                return;
+            }
+            
+            const indicator = statusEl.querySelector('.status-indicator');
+            const textSpan = statusEl.querySelector('span:last-child');
+            
+            if (!indicator || !textSpan) {
+                console.error('✗ 找不到狀態指示器或文字元素');
+                return;
+            }
+            
+            if (status === "ONLINE") {
+                indicator.className = 'status-indicator online';
+                textSpan.textContent = '專員A: 在線';
+                textSpan.className = 'status-online';
+                console.log('✓ 專員A狀態已更新為: 在線');
+            } else {
+                indicator.className = 'status-indicator offline';
+                textSpan.textContent = '專員A: 離線';
+                textSpan.className = 'status-offline';
+                console.log('✓ 專員A狀態已更新為: 離線');
+            }
+        }
+        
+        // 檢查當前連接的ID是否有效（是否與Redis中的ID匹配）
+        async function checkAgentIdValidity() {
+            if (!currentUserId) {
+                return; // 如果還沒有連接，不檢查
+            }
+            
+            try {
+                const response = await fetch(`/api/agent/b/check/${currentUserId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (!data.isValid) {
+                        // ID已變更，當前連接無效
+                        console.warn('專員B的ID已變更，當前ID無效，斷開連接');
+                        console.log('當前ID:', currentUserId);
+                        console.log('有效ID:', data.validId);
+                        
+                        // 斷開連接
+                        if (stompClient && stompClient.connected) {
+                            stompClient.disconnect();
+                        }
+                        
+                        // 更新狀態
+                        updateConnectionStatus(false);
+                        document.getElementById('connectionStatus').textContent = '已離線（ID已變更）';
+                        document.getElementById('connectionStatus').className = 'status-badge status-disconnected';
+                        
+                        // 顯示提示
+                        alert('專員B的ID已變更，您的連接已斷開。請重新整理頁面。');
+                    } else {
+                        // ID有效，連接正常
+                        console.log('專員B的ID有效，連接正常');
+                    }
+                }
+            } catch (error) {
+                console.error('檢查專員B ID有效性失敗:', error);
+            }
+        }
 
         function updateConnectionStatus(connected) {
             const statusEl = document.getElementById('connectionStatus');
@@ -185,6 +308,58 @@
                     addMessage('publicMessages', data.content, 'public', data.sender || '系統');
                 });
                 
+                // 訂閱專員狀態更新頻道
+                stompClient.subscribe('/topic/agentStatus', function(message) {
+                    console.log('=== 專員B收到狀態更新訊息 ===');
+                    console.log('原始訊息:', message);
+                    console.log('訊息body:', message.body);
+                    try {
+                        const data = JSON.parse(message.body);
+                        console.log('解析後的狀態資料:', data);
+                        console.log('專員類型:', data.agentType);
+                        console.log('專員名稱:', data.agentName);
+                        console.log('狀態:', data.status);
+                        console.log('時間戳:', data.timestamp);
+                        
+                        // 如果是專員A的狀態更新，更新顯示
+                        if (data.agentType === 'a') {
+                            console.log('✓ 這是專員A的狀態更新，更新顯示');
+                            updateTargetAgentStatus(data.status);
+                        } else {
+                            console.log('這是專員B的狀態更新，忽略');
+                        }
+                    } catch (e) {
+                        console.error('✗ 解析狀態更新訊息失敗:', e);
+                        console.error('原始body:', message.body);
+                    }
+                });
+                console.log('✓ 專員B已訂閱狀態更新頻道: /topic/agentStatus');
+                
+                // 訂閱專員ID變更通知頻道（來自RabbitMQ）
+                stompClient.subscribe('/user/topic/agentIdChanged', function(message) {
+                    console.log('=== 收到專員ID變更通知（來自RabbitMQ） ===');
+                    const data = JSON.parse(message.body);
+                    console.log('通知內容:', data);
+                    
+                    // 顯示通知訊息
+                    if (data.content) {
+                        addMessage('publicMessages', data.content, 'public', '系統');
+                    }
+                    
+                    // 自動斷開連接
+                    if (stompClient && stompClient.connected) {
+                        stompClient.disconnect();
+                    }
+                    
+                    // 更新狀態
+                    updateConnectionStatus(false);
+                    document.getElementById('connectionStatus').textContent = '已離線（ID已變更）';
+                    document.getElementById('connectionStatus').className = 'status-badge status-disconnected';
+                    
+                    // 顯示提示
+                    alert('專員B的ID已變更，您的連接已斷開。請重新整理頁面。');
+                });
+                
                 // 訂閱私信頻道
                 const privateSubscription = stompClient.subscribe('/user/topic/privateMessage', function(message) {
                     console.log('=== 專員B收到私信 ===');
@@ -225,12 +400,10 @@
             const input = document.getElementById('privateMessageInput');
             const message = input.value.trim();
             
-            // 獲取目標用戶ID
-            const targetIdInput = document.getElementById('targetUserIdInput');
-            targetUserId = targetIdInput.value.trim() || localStorage.getItem('agent-a-user-id');
-            
             if (!targetUserId) {
-                alert('請先輸入專員A的用戶ID！\n請在專員A頁面查看其用戶ID，然後在此輸入。');
+                alert('專員A尚未連接，請先開啟專員A頁面並連接。');
+                // 重新獲取專員A的ID
+                fetchTargetAgentId();
                 return;
             }
             
@@ -251,21 +424,19 @@
                 input.value = '';
             }
         }
-        
-        function loadTargetIdFromStorage() {
-            const targetId = localStorage.getItem('agent-a-user-id');
-            if (targetId) {
-                document.getElementById('targetUserIdInput').value = targetId;
-                targetUserId = targetId;
-                alert('已載入專員A的用戶ID: ' + targetId);
-            } else {
-                alert('尚未找到專員A的用戶ID，請先開啟專員A頁面並連接。');
-            }
-        }
 
         // 頁面載入時連接
         $(document).ready(function() {
+            // 先獲取專員A的ID
+            fetchTargetAgentId();
+            // 定期更新專員A的ID（每5秒）
+            setInterval(fetchTargetAgentId, 5000);
+            
             connect();
+            
+            // 定期檢查當前連接的ID是否有效（每3秒）
+            // 如果Redis中的ID改變，會自動斷開舊連接
+            setInterval(checkAgentIdValidity, 3000);
             
             $('#sendPublicBtn').click(sendPublicMessage);
             $('#sendPrivateBtn').click(sendPrivateMessage);
@@ -277,17 +448,6 @@
             $('#privateMessageInput').keypress(function(e) {
                 if (e.which === 13) sendPrivateMessage();
             });
-            
-            $('#loadTargetIdBtn').click(loadTargetIdFromStorage);
-            
-            // 定期檢查localStorage中的專員A用戶ID
-            setInterval(function() {
-                const aUserId = localStorage.getItem('agent-a-user-id');
-                if (aUserId && !document.getElementById('targetUserIdInput').value) {
-                    document.getElementById('targetUserIdInput').value = aUserId;
-                    targetUserId = aUserId;
-                }
-            }, 1000);
         });
     </script>
 </body>

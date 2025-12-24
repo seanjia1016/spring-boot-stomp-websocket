@@ -1,5 +1,6 @@
 package com.hejz.springbootstomp;
 
+import com.hejz.springbootstomp.dto.PrivateMessage;
 import com.hejz.springbootstomp.dto.ResponseMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,6 +55,9 @@ public class RedisMessagePublisher {
 
     /** Redis Pub/Sub 頻道主題：/topic/chat */
     private final ChannelTopic topic = new ChannelTopic("/topic/chat");
+    
+    /** Redis Pub/Sub 頻道主題：/topic/privateMessage */
+    private final ChannelTopic privateTopic = new ChannelTopic("/topic/privateMessage");
 
     /**
      * 發布訊息到 Redis 頻道（ResponseMessage 物件格式）
@@ -122,6 +126,51 @@ public class RedisMessagePublisher {
         ResponseMessage responseMessage = new ResponseMessage(message);
         // 調用 publish(ResponseMessage) 方法發布訊息
         publish(responseMessage);
+    }
+
+    /**
+     * 發布私信訊息到 Redis 頻道
+     * 
+     * <p>此方法接收 PrivateMessage 物件，將其序列化為 JSON 字串後發布到
+     * Redis Pub/Sub 頻道。所有訂閱該頻道的節點都會收到此訊息，但只有
+     * 目標用戶連接的節點才會轉發給客戶端。
+     * 
+     * <p>處理流程：
+     * <ol>
+     *   <li>使用 ObjectMapper 將 PrivateMessage 序列化為 JSON 字串</li>
+     *   <li>透過 RedisTemplate 發布到 /topic/privateMessage 頻道</li>
+     *   <li>Redis 監聽器接收後檢查目標用戶是否連接在本節點</li>
+     *   <li>如果連接，則轉發給目標用戶；否則忽略</li>
+     * </ol>
+     * 
+     * <p>多節點支援：
+     * <ul>
+     *   <li>所有節點都訂閱 /topic/privateMessage 頻道</li>
+     *   <li>每個節點檢查目標用戶是否連接在本節點</li>
+     *   <li>只有目標用戶連接的節點才會轉發訊息</li>
+     * </ul>
+     * 
+     * <p>錯誤處理：
+     * <ul>
+     *   <li>如果 JSON 序列化失敗，會捕獲 JsonProcessingException</li>
+     *   <li>錯誤會記錄到日誌，但不會拋出異常</li>
+     * </ul>
+     * 
+     * @param privateMessage 要發布的 PrivateMessage 物件，包含發送者、接收者和訊息內容
+     * 
+     * @see com.hejz.springbootstomp.RedisMessageListener#onMessage(Message, byte[])
+     */
+    public void publishPrivateMessage(PrivateMessage privateMessage) {
+        try {
+            // 將 PrivateMessage 序列化為 JSON 字串
+            String jsonMessage = objectMapper.writeValueAsString(privateMessage);
+            // 發布到 Redis /topic/privateMessage 頻道
+            redisTemplate.convertAndSend(privateTopic.getTopic(), jsonMessage);
+            log.info("私信已發布到 Redis /topic/privateMessage 頻道，接收者: {}", privateMessage.getRecipientId());
+        } catch (JsonProcessingException e) {
+            // 記錄錯誤，但不中斷執行
+            log.error("Redis 私信發布失敗: {}", e.getMessage(), e);
+        }
     }
 }
 

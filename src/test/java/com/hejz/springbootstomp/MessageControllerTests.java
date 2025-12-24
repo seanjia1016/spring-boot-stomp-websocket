@@ -63,7 +63,8 @@ class MessageControllerTests {
 
     @BeforeEach
     void setUp() {
-        // 只在需要時設置 principal.getName()
+        // 設置 principal.getName() 的返回值，用於測試
+        when(principal.getName()).thenReturn("testUser");
         // 這個方法在每個測試執行前都會被呼叫，用來初始化測試環境
     }
 
@@ -90,8 +91,8 @@ class MessageControllerTests {
         // 設定訊息內容
         message.setContent("測試訊息");
 
-        // 執行被測試的方法：處理公共訊息
-        messageController.message(message);
+        // 執行被測試的方法：處理公共訊息（需要 Principal 參數）
+        messageController.message(principal, message);
 
         // 驗證：確認 redisPublisher.publish() 被呼叫了 1 次，且參數是 "測試訊息"
         // eq() 表示參數必須完全相等
@@ -121,8 +122,8 @@ class MessageControllerTests {
         // 設定包含 HTML 標籤的訊息內容（這是潛在的 XSS 攻擊）
         message.setContent("<script>alert('XSS')</script>");
 
-        // 執行被測試的方法：處理公共訊息（應該會轉義 HTML）
-        messageController.message(message);
+        // 執行被測試的方法：處理公共訊息（應該會轉義 HTML，需要 Principal 參數）
+        messageController.message(principal, message);
 
         // 驗證：確認 redisPublisher.publish() 被呼叫了 1 次
         // argThat() 用來驗證參數是否符合特定條件
@@ -155,8 +156,8 @@ class MessageControllerTests {
         // 設定訊息內容
         message.setContent("測試訊息");
 
-        // 執行被測試的方法：處理公共訊息
-        messageController.message(message);
+        // 執行被測試的方法：處理公共訊息（需要 Principal 參數）
+        messageController.message(principal, message);
 
         // 驗證：確認 redisPublisher.publish() 被呼叫了 1 次，用來發布訊息到 Redis
         verify(redisPublisher, times(1)).publish(eq("測試訊息"));
